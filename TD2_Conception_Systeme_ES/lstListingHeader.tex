@@ -1,0 +1,31 @@
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{colKeys}{rgb}{0,0,1} 
+\definecolor{colIdentifier}{rgb}{0,0,0} 
+\definecolor{colComments}{rgb}{0,0.5,1} 
+\definecolor{colString}{rgb}{0.6,0.1,0.1} 
+
+\lstset{%configuration de listings 
+	float=hbp,% 
+		basicstyle=\ttfamily\small, % 
+		identifierstyle=\color{colIdentifier}, % 
+		keywordstyle=\color{colKeys}, % 
+		stringstyle=\color{colString}, % 
+		commentstyle=\color{colComments}, % 
+		columns=flexible, % 
+		tabsize=2, % 
+		frame=trBL, % 
+		frameround=tttt, % 
+		extendedchars=true, % 
+		showspaces=false, % 
+		showstringspaces=false, % 
+		numbers=left, % 
+		numberstyle=\tiny, % 
+		breaklines=true, % 
+		breakautoindent=true, % 
+		captionpos=b,% 
+		xrightmargin=-2cm, % 
+		xleftmargin=-2cm 
+} 
+\lstset{language=c++}
+\lstset{commentstyle=\textit}
