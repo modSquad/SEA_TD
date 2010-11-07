@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Arch Linux) (format=pdflatex 2010.4.11)  7 NOV 2010 11:23
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Arch Linux) (format=pdflatex 2010.4.11)  7 NOV 2010 11:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -579,40 +579,35 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (./tmp//main.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 9.
-)
+ [1
+
+{/usr/share/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
- (./vocabulaire.tex [1
 
-{/usr/share/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(./vocabulaire.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
+ Make it at least 14.4521pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2]) (./exigences-fonctionnelles.tex [3] [4])
-(./exigences-non-fonctionnelles.tex [5] [6]pdfTeX warning (ext4): destination w
-ith the same identifier (name{section.2}) has been already used, duplicate igno
+[2] [3]) (./exigences-fonctionnelles.tex [4] [5])
+(./exigences-non-fonctionnelles.tex [6] [7]pdfTeX warning (ext4): destination w
+ith the same identifier (name{section.1}) has been already used, duplicate igno
 red
 <to be read again> 
                    \relax 
 l.2 \section{Ergonomie}
                        pdfTeX warning (ext4): destination with the same identif
-ier (name{section.3}) has been already used, duplicate ignored
+ier (name{section.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.4 \section{Portabilité}
-                          ) (./specifications.tex
-
-Package Fancyhdr Warning: \headheight is too small (13.59999pt): 
- Make it at least 14.4521pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[7] [8]pdfTeX warning (ext4): destination with the same identifier (name{sectio
-n.2}) has been already used, duplicate ignored
+                          ) (./specifications.tex [8] [9]pdfTeX warning (ext4):
+ destination with the same identifier (name{section.1}) has been already used, 
+duplicate ignored
 <to be read again> 
                    \relax 
 l.3 \section{Caractéristiques}
@@ -622,22 +617,65 @@ Overfull \hbox (7.42719pt too wide) in paragraph at lines 44--45
 n ap-puyant sur la touche stan-dart [] Suppr [].
  []
 
-[9]) AED: lastpage setting LastPage [10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
+[10]) (./conception.tex [11] [12]pdfTeX warning (ext4): destination with the sa
+me identifier (name{section.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4 \section{Rappel du contexte}
+                                pdfTeX warning (ext4): destination with the sam
+e identifier (name{section.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.9 \section{Choix d'une solution}
+                                  pdfTeX warning (ext4): destination with the s
+ame identifier (name{subsection.2.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.10 \subsection{Présentation des alternatives}
+                                                pdfTeX warning (ext4): destinat
+ion with the same identifier (name{subsection.2.2}) has been already used, dupl
+icate ignored
+<to be read again> 
+                   \relax 
+l.21 \subsection{Comparaison des alternatives}
+                                              pdfTeX warning (ext4): destinatio
+n with the same identifier (name{section.3}) has been already used, duplicate i
+gnored
+<to be read again> 
+                   \relax 
+l.28 \section{Détail de la solution choisie}
+                                             pdfTeX warning (ext4): destination
+ with the same identifier (name{subsection.3.1}) has been already used, duplica
+te ignored
+<to be read again> 
+                   \relax 
+l.30 \subsection{...}
+                     pdfTeX warning (ext4): destination with the same identifie
+r (name{subsection.3.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.32 \subsection{...}
+                     pdfTeX warning (ext4): destination with the same identifie
+r (name{section.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.43 \section{Bilan}
+                    ) AED: lastpage setting LastPage [13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 25.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 25.
  (./tmp//main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 25.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 5905 strings out of 493847
- 84847 string characters out of 3153979
+ 5927 strings out of 493847
+ 85149 string characters out of 3153979
  178063 words of memory out of 3000000
- 9023 multiletter control sequences out of 15000+200000
+ 9032 multiletter control sequences out of 15000+200000
  11750 words of font info for 40 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 33i,12n,43p,374b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,12n,43p,374b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmbxsl10.pfb></usr/share/texmf-dist/fonts/type1/pub
@@ -648,9 +686,9 @@ usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf
 1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmsl10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl9.pfb
 ></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
-Output written on ./tmp//main.pdf (10 pages, 172022 bytes).
+Output written on ./tmp//main.pdf (13 pages, 185382 bytes).
 PDF statistics:
- 208 PDF objects out of 1000 (max. 8388607)
- 33 named destinations out of 1000 (max. 500000)
- 145 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 295 PDF objects out of 1000 (max. 8388607)
+ 43 named destinations out of 1000 (max. 500000)
+ 265 words of extra memory for PDF output out of 10000 (max. 10000000)
 
