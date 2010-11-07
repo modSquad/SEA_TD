@@ -1,6 +1,7 @@
 DOCPATH=./
 TMPPATH=./tmp/
 BINPATH=./bin/
+IMGPATH=./img/
 
 SOURCE=main.tex
 SOURCEDEPS=$(wildcard $(DOCPATH)/*.tex)
@@ -8,16 +9,16 @@ OUTPUT=main.pdf
 
 all: checkpath $(BINPATH)/$(OUTPUT)
 
-checkpath:
-	if [ ! -d tmp ]; then \
-		mkdir tmp; \
-	fi
-	if [ ! -d bin ]; then \
-		mkdir bin; \
-	fi
-	if [ ! -d img ]; then \
-		mkdir img; \
-	fi
+checkpath: $(TMPPATH) $(BINPATH) $(IMGPATH)
+
+$(BINPATH):
+	mkdir $@
+
+$(TMPPATH):
+	mkdir $@
+
+$(IMGPATH):
+	mkdir $@
 
 $(BINPATH)/$(OUTPUT): $(DOCPATH)/$(SOURCE) $(SOURCEDEPS)
 # Processing twice to handle references inside the document
