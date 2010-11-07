@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="434" version="1.1" width="757" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#00ff" height="72" rx="16" ry="16" stroke="#00ff" stroke-width="1" width="184" x="174" y="112"/>
+<rect fill="#ffffff" height="72" rx="16" ry="16" stroke="#ffffff" stroke-width="1" width="184" x="174" y="112"/>
+<rect fill="#ffffff" height="72" rx="16" ry="16" stroke="#000000" stroke-width="1" width="184" x="174" y="112"/>
+<text font-family="Dialog" font-size="12" x="217" y="126">
+Mode édition texte</text>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="174" x2="357" y1="136" y2="136"/>
+<rect fill="#00ff" height="80" rx="16" ry="16" stroke="#00ff" stroke-width="1" width="184" x="502" y="256"/>
+<rect fill="#ffffff" height="80" rx="16" ry="16" stroke="#ffffff" stroke-width="1" width="184" x="502" y="256"/>
+<rect fill="#ffffff" height="80" rx="16" ry="16" stroke="#000000" stroke-width="1" width="184" x="502" y="256"/>
+<text font-family="Dialog" font-size="12" x="539" y="270">
+Mode gestion fichier</text>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="502" x2="685" y1="280" y2="280"/>
+<ellipse cx="22" cy="136" fill="#000000" rx="8.0" ry="8.0" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="30,136 174,136" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="162" x2="174" y1="143" y2="136"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="162" x2="174" y1="129" y2="136"/>
+<text font-family="Dialog" font-size="12" x="55" y="125">
+Ouverture éditeur</text>
+<polyline fill="none" points="182,112 182,40 334,40 334,112" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="327" x2="334" y1="100" y2="112"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="341" x2="334" y1="100" y2="112"/>
+<text font-family="Dialog" font-size="12" x="136" y="28">
+Insérer, sélectionner, supprimer caractères</text>
+<polyline fill="none" points="358,184 502,256" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="488" x2="502" y1="256" y2="256"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="494" x2="502" y1="244" y2="256"/>
+<text font-family="Dialog" font-size="12" x="420" y="204">
+Charger / sauvegarder un fichier</text>
+<polyline fill="none" points="502,304 286,304 286,184" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="293" x2="286" y1="196" y2="184"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="279" x2="286" y1="196" y2="184"/>
+<text font-family="Dialog" font-size="12" x="296" y="325">
+Valider / Annuler</text>
+<polyline fill="none" points="518,336 518,400 662,400 662,336" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="669" x2="662" y1="348" y2="336"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="655" x2="662" y1="348" y2="336"/>
+<text font-family="Dialog" font-size="12" x="441" y="416">
+Saisie chemin absolu du fichier dans la ligne de saisie</text>
+<ellipse cx="218" cy="380" fill="#000000" rx="12.0" ry="12.0" stroke="#000000" stroke-width="1"/>
+<ellipse cx="218" cy="380" fill="#ffffff" rx="11.0" ry="11.0" stroke="#ffffff" stroke-width="1"/>
+<ellipse cx="217" cy="379" fill="#000000" rx="7.5" ry="7.5" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="217,184 217,368" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="210" x2="217" y1="356" y2="368"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="224" x2="217" y1="356" y2="368"/>
+<text font-family="Dialog" font-size="12" x="135" y="289">
+Quitter éditeur</text>
+</svg>
