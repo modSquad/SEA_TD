@@ -19,6 +19,39 @@ Le tampon est modifié directement au fur et à mesure de la frappe de l'utilisa
 
 \subsubsection{Solution 1 : structure consécutive}
 % Paul
+Toute la mémoire est allouée dans des tableaux, d'un seul bloc.
+
+Le fichier temporaire est lui aussi placé dans une structure consécutive dans
+un zone contigüe de la mémoire centrale.
+
+La solution est donc homogène : le même mécanisme est mis en place entre la
+mémoire centrale et la mémoire secondaire. La compréhension du système est
+alors simplifiée.
+
+L'accès est direct : chaque caractère du texte peut être accédé en tant
+constant ($O(n)$). De fait, si l'on a besoin uniquement de remplacer des
+caractères par d'autres caractères, cette solution est efficace.
+
+De la même manière, si l'on a besoin de rajouter des caractères à la fin du
+texte, la solution est là encore très efficace, dans les limites de la mémoire
+disponible sur le système.
+
+De plus, cette solution présente l'avantage de ne pas devoir réserver de la
+mémoire pour le chaînage, celui-ci n'étant pas présent dans cette solution.
+Par contre, nous devons impérativement réserver un \emph{buffer} de taille
+importante dès le début, pour éviter la réallocation intempestive. Nous
+pourrions envisager d'utiliser la technique bien connue de la réallocation par
+pas de $n^2$, c'est à dire réserver la mémoire selon un schéma quadratique, et
+donc réserver de plus en plus de mémoire à chaque réallocation.
+
+Par contre, si l'on a besoin d'insérer des caractères au milieu du texte, la
+solution est très couteuse. En effet chaque insertion ou suppression de
+caractères provoque des opérations en $O(n)$ (où $n$ est le nombre de
+caractères entre le point de fin d'insertion ou de suppression et la fin de la
+mémoire allouée (le \emph{buffer}). Comme il s'agit d'une opération assez
+classique et fréquente, de nombreuses opération sont à prévoir.  Ces opération
+sont du type \texttt{memmove()}, qui permet de déplacer des données dans un
+\emph{buffer}, et qui a une complexité de $n$.
 
 \subsubsection{Solution 2 : structure mixte}
 % Martin
@@ -78,10 +111,10 @@ Cette table contient bien sûr d'autres informations, comme le montre la représ
 	\begin{tabular}{l|c|c|c}
 		Critère & Solution 1 & Solution 2 & Solution 3 \\
 		\hline
-		??? & & & \\
-		??? & & & \\
-		??? & & & \\
-		??? & & & \\
+		Complexité en insertion & & & \\
+		Complexité en suppression & & & \\
+		Utilisation mémoire & & & \\
+		Facilité d'implémentation & & & \\
 		??? & & &
 	\end{tabular}
 \end{table}
