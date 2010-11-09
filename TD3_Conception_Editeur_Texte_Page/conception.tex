@@ -105,18 +105,44 @@ Cette table contient bien sûr d'autres informations, comme le montre la représ
 \subsection{Comparaison des alternatives}
 % En commun
 % « Mécanisme de justification » : un tableau avec des « + » et des « - » ?
+
+Les critères d'ergonomie et de portabilité ne sont pas pertinents pour la
+comparaison des alternatives.
+En effet, une bonne ergonomie, au niveau de la conception, sera traduite par une
+bonne efficacité, afin d'éviter à l'utilisateur des attentes inutiles.
+De plus, nous n'utiliserons pas d'assembleur dans les différentes solutions, se
+reposant sur le compilateur C++ pour assurer cette portabilité. Le système sera
+donc portable tant que la plateforme dispose d'un compilateur C++.
+
+Nous avons choisis de pondérer ces critères, pour prendre en compte leur
+importance respectives.
+
 \begin{table}[H]
 	\centering
-	\caption{Table comparative des avantages et inconvénients de chaque solution}
-	\begin{tabular}{l|c|c|c}
-		Critère & Solution 1 & Solution 2 & Solution 3 \\
+	\begin{tabular}{l c|c|c|c}
+		Critère & Pondération & Solution 1 & Solution 2 & Solution 3 \\
+		\hline \hline
+		Maintenabilité & 20 & ++ (34) & ++ (35) & +++ (56) \\
 		\hline
-		Complexité en insertion & & & \\
-		Complexité en suppression & & & \\
-		Utilisation mémoire & & & \\
-		Facilité d'implémentation & & & \\
-		??? & & &
+		Décomposable en couches & 8 & + & ++ & +++ \\
+		Homogénéité & 5 & +++ & + & +++ \\
+		Couplage entre couches & 5 & + & ++ & +++ \\
+		Facilité d'implémentation & 2 & +++ & ++ & + \\
+		\hline \hline
+		Efficacité & 15 & ++ (27) & ++ (27) & +++ (41) \\
+		\hline
+		Complexité en insertion & 3 & + & ++ & +++ \\
+		Complexité en suppression & 3 & + & ++ & +++ \\
+		Complexité au changement de ligne & 3 & + & + & +++ \\
+		Complexité de changement de page & 3 & +++ & ++ & +++ \\
+		Économie mémoire & 1 & +++ & ++ & + \\
+		Complexité de chargement du fichier temporaire & 1 & +++ & ++ & +++ \\
+		Complexité de la sauvegarde & 1 & +++ & ++ & + \\
+		\hline
+		Total & 35 & 61 & 60 & 98 \\
 	\end{tabular}
+	\vspace{0.5cm}
+	\caption{Table comparative des avantages et inconvénients de chaque solution}
 \end{table}
 
 
