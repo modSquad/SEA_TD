@@ -1,0 +1,8 @@
+#!/usr/bin
+
+make
+git checkout bin
+git add bin
+git commit -m 'Commit last binaries (automated)'
+git push origin bin
+git checkout master
