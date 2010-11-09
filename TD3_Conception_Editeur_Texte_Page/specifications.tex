@@ -65,10 +65,12 @@ Les différents éléments de l'aide :
 	\item \textbf{Quitterr} : \og CTRL + q\fg
 \end{itemize}
 
-Dans le cas où les commandes de gestion de fichiers sont appelée, l'aide contextuelle affiche (dans le cas d'un système en Français) :
-\begin{center}
-	\og Veuillez saisir le chemin absolu du nouveau fichier\fg
-\end{center}
+Dans le cas où les commandes de gestion de fichiers sont appelée, l'aide contextuelle affiche (dans le cas d'un système en Français) :\\
+\begin{tabular}{ll}
+	Veuillez saisir le chemin absolu du fichier &~\\
+	Enter: Valider & ESC : Annuler\\
+\end{tabular}
+~\\
 Toutes les saisies relatives aux noms de fichiers seront effectuée dans la \textsl{ligne de saisie}.
 
 \paragraph{Gestion des fichiers :}
@@ -85,3 +87,10 @@ Deux modes de lancement sont disponibles :
 	\item Sans paramètre : Un fichier vide appelé \og Untitled\fg est ouvert, mais pas enregistré.
 	\item Avec un paramètre : Le fichier passé en paramètre est chargé et affiché s'il existe.
 \end{enumerate}
+
+\section{Liste des erreurs}
+Seules les opérations sur les fichiers peuvent générer des erreurs. Les messages dépendent de la langue du système. Ici pour un système un Français :
+
+\paragraph{Le nom de fichier à charger n'existe pas :} Le menu contextuel affiche \og Fichier inexistant\fg
+\paragraph{Le fichier où aura lieux la sauvegarde est protégé en écriture :} Le menu contextuel affiche \og Fichier protégé\fg
+
