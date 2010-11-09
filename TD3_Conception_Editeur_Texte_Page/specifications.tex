@@ -68,10 +68,14 @@ Les différents éléments de l'aide :
 \end{itemize}
 
 Dans le cas où les commandes de gestion de fichiers sont appelée, l'aide contextuelle affiche (dans le cas d'un système en Français) :\\
+\begin{center}
+\fbox{
 \begin{tabular}{ll}
 	Veuillez saisir le chemin absolu du fichier &~\\
 	Enter: Valider & ESC : Annuler\\
 \end{tabular}
+}
+\end{center}
 ~\\
 Toutes les saisies relatives aux noms de fichiers seront effectuée dans la \textsl{ligne de saisie}.
 
@@ -96,3 +100,10 @@ Seules les opérations sur les fichiers peuvent générer des erreurs. Les messa
 \paragraph{Le nom de fichier à charger n'existe pas :} Le menu contextuel affiche \og Fichier inexistant\fg
 \paragraph{Le fichier où aura lieux la sauvegarde est protégé en écriture :} Le menu contextuel affiche \og Fichier protégé\fg
 
+\section{Bilan}
+Tout en respectant un cahier des charges réaliste, notre application a le mérite de proposer toutes les fonctions de bases pour manipuler un document source. Il permet, dans un contexte \emph{multilangue}, avec des \emph{requis matériels minimalistes}, quelque soit le \emph{système d'exploitation}, ou la \emph{machine cible} :
+\begin{itemize}
+	\item D'effectuer toutes les opérations de fichiers du type : Ouvrir, charger, sauvegarder
+	\item D'insérer, modifier, supprimer du texte
+	\item De naviguer dans un fichier texte, au travers de ses différentes pages
+\end{itemize}
