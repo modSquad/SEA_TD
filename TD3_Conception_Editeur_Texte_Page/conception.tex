@@ -55,6 +55,56 @@ sont du type \texttt{memmove()}, qui permet de déplacer des données dans un
 
 \subsubsection{Solution 2 : structure mixte}
 % Martin
+La seconde solution proposée est une variation de la première. La structure de
+données en mémoire secondaire reste identique : nous conservons le fichier sous
+la forme d'une structure de caractères contigüs. Cependant, le bloc texte est
+fragmenté en sous-blocs de taille donnée en mémoire centrale et stockée dans
+des éléments d'une liste doublement chaînée. Les éléments sont chaînés dans
+l'ordre des données du fichier.
+
+La structure d'un élément de la liste contiendra les données suivantes :
+\begin{description}
+  \item[@précédant] Adresse de l'élément précédant dans la liste,
+  \item[@suivant] Adresse de l'élément suivant dans la liste,
+  \item[lgUtil] Longueur du bloc utilisée données,
+  \item[lgMax] Longueur totale du bloc de données,
+  \item[info] Bloc de données (contient le fragment de texte stocké dans
+l'élément).
+\end{description}
+
+Le bloc de données peut éventuellement être plus large que la chaîne de
+caractères qu'il contient. En effet, lors de l'édition du document, de nouveaux
+blocs peuvent être alloués mais pas intégralement remplis par la saisie de
+l'utilisateur. Il est donc nécessaire de retenir deux informations sur ce bloc
+: $lgUtil$, la longueur effectivement utilisée, qui correspond à la taille de
+la chaine stockée (marqueur de chaîne inclu),  et $lgMax$, la taille du bloc
+$info$.
+
+Cette seconde solution est moins efficace que la première lors du chargement et
+de la sauvegarde du fichier. Les structures manipulées en mémoire centrale et
+mémoire secondaire ne seront plus homogènes, il sera donc nécessaire de
+proposer des procédures permettant de convertir le bloc de texte d'un format de
+structure à l'autre. Les opérations de chargement et sauvegarde du fichier
+seront plus coûteuses du fait de ces opérations de traduction, mais aussi des
+opérations d'allocation de mémoire proportionnelles à la taille du fichier.
+
+Par ailleurs, cette solution est plus coûteuse en espace pour la mémoire
+centrale, puisqu'il est nécessaire de prévoir quelques octets correspondant à
+la taille des pointeurs manipulés.
+
+En contrepartie, cette solution offre de biens meilleurs temps d'accès en
+lecture et écriture, puisqu'il est possible de naviguer d'un élément de la
+chaîne à un autre sans lire l'ensemble du bloc. La complexité algorithmique
+d'une telle opération sera en $O(n/m)$, où n est la longueur maximale d'un bloc
+et m le nombre d'éléments de la chaîne. L'insertion de texte nécessite de se
+placer à la fin du bloc de données et d'ajouter le caractère saisi. Si la
+longueur de la chaîne atteint la longueur maximale, il sera nécessaire
+d'allouer un nouvel élément et de l'insérer dans la chaîne à la suite de
+l'élément courant.
+
+Une double liste chaînée est une structure de données classique qui n'est pas
+difficile à implémenter et à manipuler. L'impact d'une telle solution sur la
+maintenabilité est très faible.
 
 \subsubsection{Solution 3 : structure chaînée}
 % Yoann
