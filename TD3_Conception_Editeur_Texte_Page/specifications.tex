@@ -6,11 +6,11 @@ Périphériques :
 \begin{itemize}
 	\item Un souris deux bouton
 	\item Un clavier standart (contenant les caractères alphanumérique et les cactères spéciaux : fin de ligne, fin de page)
-	\item Un terminal pouvant afficher au moins 80 car/ligne, 50 lignes/page + les quatres lignes de contrôle
+	\item Un terminal pouvant afficher au moins 80 car/ligne, 50 lignes/page + les quatres lignes de rappel de commande
 \end{itemize}
 
 \subsection{Zone tampon}
-TODO
+Cette zone mémoire contient la dernière sélection effectuée.
 
 \subsection{Comportement de l'interface}
 
@@ -43,6 +43,14 @@ L'utilisateur peut aussi coller au niveau du curseur le texte présent dans la z
 
 L'utilisateur peut supprimer le caractère courant en appuyant sur la touche standart \og Suppr\fg. Il peut aussi supprimer le texte sélectionné au curseur en sélectionnant le texte, puis en appuyant sur la touche standart \og Suppr\fg.
 
+\paragraph{Page glissante}
+L'utilisateur a aussi la possibilité de changer de page en appuyant sur les flèches directionnelles du clavier :
+\begin{itemize}
+	\item \og Flêche haut\fg : Change la page courante avec la page précédente si elle existe.
+	\item \og Flêche bas\fg : Change la page courante avec la page suivante si elle existe.
+\end{itemize}
+Dans les deux cas, le curseur est placé en première ligne.
+
 \paragraph{Menu contextuel}
 Constitué de 3 lignes, une \textsl{ligne de saisie} et deux lignes d'aide contextuel, il repertorie toutes les commandes accessibles dans le contexte courant sous la forme :
 TODO INSËRER SNITPPET
@@ -58,7 +66,6 @@ Les différents éléments de l'aide :
 Dans le cas ou les commandes de gestion de fichiers sont appelée, l'aide contextuelle affiche : \og Veuillez saisir le chemin absolu du nouveau fichier\fg
 
 Toutes les saisies relatives aux noms de fichiers seront effectuée dans la \textsl{ligne de saisie}.
-
 
 \paragraph{Gestion des fichiers}
 L'utilisateur peut ouvrir un fichier. Soit en lançant notre éditeur de texte en ligne de commande et en passant en paramètre le fichier à ouvrir. Soit en appuyant simultanément sur les touches \og CTRL + O\fg. Dans ce cas, le programme demande à l'utilisateur de saisir le chemin absolu du fichier à ouvrir.
