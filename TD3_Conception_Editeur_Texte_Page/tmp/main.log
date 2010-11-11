@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.10.3)  9 NOV 2010 15:38
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.10.3)  11 NOV 2010 22:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -467,6 +467,23 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks18
 \@floatcapt=\box27
 )
+(/usr/local/texlive/2010/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
 (/usr/local/texlive/2010/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 \Gm@cnth=\count102
@@ -508,7 +525,41 @@ Package: arydshln 2004/08/31 v1.71
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2006/05/08 v1.12 Space after command names (DPC,MH)
-))) (./extra.tex) (./tmp//main.aux)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2010/01/09 v3.1m Customizing captions (AR)
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2010/01/14 v3.1m caption3 kernel (AR)
+\captionmargin=\dimen127
+\captionmargin@=\dimen128
+\captionwidth=\dimen129
+\caption@indent=\dimen130
+\caption@parindent=\dimen131
+\caption@hangindent=\dimen132
+)
+\c@ContinuedFloat=\count115
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+)
+\c@KVtest=\count116
+\sf@farskip=\skip53
+\sf@captopadj=\dimen133
+\sf@capskip=\skip54
+\sf@nearskip=\skip55
+\c@subfigure=\count117
+\c@subfigure@save=\count118
+\c@lofdepth=\count119
+\c@subtable=\count120
+\c@subtable@save=\count121
+\c@lotdepth=\count122
+\sf@top=\skip56
+\sf@bottom=\skip57
+)))
+(./extra.tex) (./tmp//main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
@@ -536,15 +587,15 @@ Package frenchb.ldf Warning: OT1 encoding should not be used for French.
 
 (/usr/local/texlive/2010/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count115
-\scratchdimen=\dimen127
+\scratchcounter=\count123
+\scratchdimen=\dimen134
 \scratchbox=\box29
-\nofMPsegments=\count116
-\nofMParguments=\count117
+\nofMPsegments=\count124
+\nofMParguments=\count125
 \everyMPshowfont=\toks21
-\MPscratchCnt=\count118
-\MPscratchDim=\dimen128
-\MPnumerator=\count119
+\MPscratchCnt=\count126
+\MPscratchDim=\dimen135
+\MPnumerator=\count127
 \everyMPtoPDFconversion=\toks22
 ) (/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -580,7 +631,7 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2009/12/18 v1.3 Cleanup title references (HO)
 )
-\c@section@level=\count120
+\c@section@level=\count128
 )
 LaTeX Info: Redefining \ref on input line 10.
 LaTeX Info: Redefining \pageref on input line 10.
@@ -625,6 +676,10 @@ LaTeX Info: Redefining \nameref on input line 10.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+Package caption Info: Begin \AtBeginDocument code.
+Package caption3 Info: subfig package 1.2 or 1.3 is loaded.
+LaTeX Info: Redefining \subref on input line 10.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 12.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -653,102 +708,86 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 34--35
+Underfull \hbox (badness 10000) in paragraph at lines 37--38
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 39--40
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
 
-Overfull \hbox (7.42719pt too wide) in paragraph at lines 48--49
+Overfull \hbox (7.42719pt too wide) in paragraph at lines 54--55
 []\OT1/cmr/m/n/10.95 L'utilisateur peut sup-pri-mer le ca-ract^^Rere cou-rant e
 n ap-puyant sur la touche stan-dart [] Suppr [].
  []
 
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
+[4] <img/MenuContextuel.png, id=175, 873.2625pt x 383.4325pt>
+File: img/MenuContextuel.png Graphic file (type png)
+
+<use img/MenuContextuel.png>
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
 
  []
 
-<img/EtatsEditeur.png, id=169, 716.9184pt x 403.7484pt>
+[5 <./img/MenuContextuel.png>]
+<img/EtatsEditeur.png, id=188, 716.9184pt x 403.7484pt>
 File: img/EtatsEditeur.png Graphic file (type png)
 
-<use img/EtatsEditeur.png> [5]
-<img/MOD-Edit.png, id=182, 873.2625pt x 1020.81375pt>
+<use img/EtatsEditeur.png>
+<img/MOD-Edit.png, id=189, 873.2625pt x 1020.81375pt>
 File: img/MOD-Edit.png Graphic file (type png)
  <use img/MOD-Edit.png>
 [6 <./img/EtatsEditeur.png>] [7 <./img/MOD-Edit.png>]) [8] (./conception.tex
-[9]pdfTeX warning (ext4): destination with the same identifier (name{section.1}
-) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.4 \section{Rappel du contexte}
-                                pdfTeX warning (ext4): destination with the sam
-e identifier (name{section.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.9 \section{Choix d'une solution}
-                                  pdfTeX warning (ext4): destination with the s
-ame identifier (name{subsection.2.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.10 \subsection{Présentation des alternatives}
-                                                
-<./img/structure_chainee_temp_adresse_virtuelle.pdf, id=208, 448.0873pt x 143.9
+(./conception/contexte.tex) [9] [10]
+Overfull \hbox (40.62726pt too wide) in paragraph at lines 148--171
+ [][] 
+ []
+
+
+<./img/structure_chainee_temp_adresse_virtuelle.pdf, id=227, 448.0873pt x 143.9
 2673pt>
 File: ./img/structure_chainee_temp_adresse_virtuelle.pdf Graphic file (type pdf
 )
- <use ./img/structure_chainee_temp_adresse_virtuelle.pdf> [10]
-<./img/structure_chainee_temp.pdf, id=217, 632.33806pt x 770.90242pt>
+ <use ./img/structure_chainee_temp_adresse_virtuelle.pdf> [11]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 192.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 192.
+
+<./img/structure_chainee_temp.pdf, id=237, 570.54292pt x 1242.51447pt>
 File: ./img/structure_chainee_temp.pdf Graphic file (type pdf)
 
 <use ./img/structure_chainee_temp.pdf>
+<./img/structure_chainee_mc.pdf, id=238, 631.1714pt x 1115.58432pt>
+File: ./img/structure_chainee_mc.pdf Graphic file (type pdf)
+
+<use ./img/structure_chainee_mc.pdf> [12 <./img/structure_chainee_temp_adresse_
+virtuelle.pdf> <./img/structure_chainee_temp.pdf> <./img/structure_chainee_mc.p
+df>]
 
 Package frenchb.ldf Warning: Degrees would look better in TS1-encoding: 
 (frenchb.ldf)                add \usepackage{textcomp} to the preamble. 
-(frenchb.ldf)                Degrees used on input line 89.
+(frenchb.ldf)                Degrees used on input line 220.
 
-[11pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
- has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.101 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-2}) has been already used, duplicate ignored
+Underfull \hbox (badness 10000) in paragraph at lines 250--251
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.101 
-       <./img/structure_chainee_temp_adresse_virtuelle.pdf> <./img/structure_ch
-ainee_temp.pdf>]pdfTeX warning (ext4): destination with the same identifier (na
-me{section.3}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.125 \section{Détail de la solution choisie}
-                                              pdfTeX warning (ext4): destinatio
-n with the same identifier (name{section.4}) has been already used, duplicate i
-gnored
-<to be read again> 
-                   \relax 
-l.140 \section{Bilan}
-                     ) AED: lastpage setting LastPage 
-[12pdfTeX warning (ext4): destination with the same identifier (name{figure.3})
- has been already used, duplicate ignored
+ []
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.27 \end{document}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{table.1}) has been already used, duplicate ignored
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 327--329
+[]\OT1/cmr/m/n/10.95 Prend en charge le m^^Secanisme de
+ []
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.27 \end{document}
-                   ]
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--332
+[]\OT1/cmr/m/n/10.95 Prend en charge le m^^Secanisme de
+ []
+
+) AED: lastpage setting LastPage 
+[14]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 27.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 27.
  (./tmp//main.aux)
@@ -757,13 +796,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 6653 strings out of 493738
- 97709 string characters out of 3143023
- 196029 words of memory out of 3000000
- 9750 multiletter control sequences out of 15000+200000
- 10895 words of font info for 38 fonts, out of 3000000 for 9000
+ 8181 strings out of 493738
+ 122250 string characters out of 3143023
+ 233960 words of memory out of 3000000
+ 11239 multiletter control sequences out of 15000+200000
+ 11807 words of font info for 41 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 33i,11n,43p,680b,391s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 48i,13n,45p,535b,518s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
@@ -772,14 +811,16 @@ Here is how much of TeX's memory you used:
 sr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
 /local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
 ocal/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loca
-l/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local
-/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/t
-exlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/te
-xlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on ./tmp//main.pdf (12 pages, 290433 bytes).
+l/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/t
+exlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/te
+xlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texl
+ive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texliv
+e/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive
+/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on ./tmp//main.pdf (14 pages, 356818 bytes).
 PDF statistics:
- 301 PDF objects out of 1000 (max. 8388607)
- 262 compressed objects within 3 object streams
- 51 named destinations out of 1000 (max. 500000)
- 237 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 355 PDF objects out of 1000 (max. 8388607)
+ 306 compressed objects within 4 object streams
+ 65 named destinations out of 1000 (max. 500000)
+ 247 words of extra memory for PDF output out of 10000 (max. 10000000)
 
