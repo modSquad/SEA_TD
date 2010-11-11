@@ -28,7 +28,7 @@ La solution est donc homogène : le même mécanisme est mis en place entre la
 mémoire centrale et la mémoire secondaire. La compréhension du système est
 alors simplifiée.
 
-L'accès est direct : chaque caractère du texte peut être accédé en tant
+L'accès est direct : chaque caractère du texte peut être accédé en temps
 constant ($O(n)$). De fait, si l'on a besoin uniquement de remplacer des
 caractères par d'autres caractères, cette solution est efficace.
 
@@ -108,11 +108,21 @@ maintenabilité est très faible.
 
 \subsubsection{Solution 3 : structure chaînée}
 % Yoann
-Toutes les structures de données sont chaînées.
+Cette solution étend la notion de chaînage à la mémoire secondaire.
 
-{\huge TODO}
+Le fichier temporaire n'a plus une structure séquentielle, mais doublement chaînée : chaque ligne est stockée dans une \og enveloppe \fg contenant non seulement les caractères formant cette ligne, mais aussi des adresses virtuelles permettant de retrouver, en accès direct, les lignes suivante et précédante.
 
+Puisque le fait de rajouter cette \og enveloppe \fg va de toute manière \og casser \fg la structure initiale du fichier texte, on peut également se permettre de rajouter d'autres informations : par exemple, la longueur utile de cette ligne, et la longueur maximale. Ainsi lors d'une suppression de caractères dans une ligne, aucun déplacement de données dans le fichier n'est nécessaire : on se contente de modifier les caractères et de réduire la longueur utile.
 
+L'insertion et la suppression de ligne sont alors très simple :
+\begin{itemize}
+	\item Une insertion se fait en ajoutant l'\og enveloppe\fg de la ligne dans un espace libre du fichier temporaire, éventuellement à la fin, et en modifiant les chaînages des lignes précédante et suivante.
+	\item Une suppression se fait simplement en modifiant les chaînages des lignes précédante et suivante.
+\end{itemize}
+
+La mémoire centrale est gérée de la même manière ; les blocs sont stockés tels quels dans un buffer (avec l'adresse virtuelle).
+
+Lorsqu'on affiche une page, on part de la première ligne. Le bloc correspondant est retrouvé grâce à un système d'indexation sur le fichier temporaire, et il est copié dans le buffer. On affiche les données de la ligne, puit on lit l'adresse virtuelle de la ligne suivante : si elle correspond à un bloc non chargé en mémoire centrale, on le charge. Puis on affiche les données, on lit l'adresse de la ligne suivante, \ldots
 
 
 \subsection{Comparaison des alternatives}
@@ -163,11 +173,10 @@ importance respectives.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Détail de la solution choisie}
 
-\subsection{Structuration d'une ligne en mémoire secondaire et en mémoire
-    centrale}
+\subsection{Structuration d'une ligne en mémoire secondaire et en mémoire centrale}
 % Yoann
 {\huge TODO}
-Le ficher temporaire est chaîné grâce à des adresses virtuelles, comme présentées ci-dessous.
+Comme dit précédemment, le ficher temporaire est chaîné grâce à des adresses virtuelles.
 
 \begin{figure}[H]
 	\centering
@@ -238,7 +247,6 @@ Le lecteur attentif aura noté que la table comporte un risque de dégénéresce
 % Paul
 Il semble intéressant de pouvoir minimiser la taille du fichier temporaire, qui
 grossit au fil du temps, afin de réduire le nombre de maillons
-% Yoann : ATTENTION, je crois qu'il parle plutôt de récupérer l'espace libre en mémoire centrale. En TD il avait l'air de dire que le fichier temporaire, on s'en branle.
 
 \section{Proposition d'architecture}
 % Paul
