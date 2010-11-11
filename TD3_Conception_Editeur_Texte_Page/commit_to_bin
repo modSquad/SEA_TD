@@ -1,0 +1,9 @@
+#!/bin/bash
+
+mv bin/main.pdf ../../main.pdf
+git checkout bin
+mv ../../main.pdf bin/main.pdf
+git add bin
+git commit -m 'Commit last binaries (automated)'
+git push origin bin
+git checkout master
