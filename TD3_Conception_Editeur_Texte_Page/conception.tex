@@ -110,44 +110,7 @@ maintenabilité est très faible.
 % Yoann
 Toutes les structures de données sont chaînées.
 
-Le ficher temporaire est chaîné grâce à des adresses virtuelles, comme présentées ci-dessous.
-
-\begin{figure}[H]
-	\centering
-	\caption{Structure d'une adresse virtuelle}
-	\includegraphics[width=0.5\textwidth]{structure_chainee_temp_adresse_virtuelle}
-\end{figure}
-
-Ainsi chaque ligne (y compris la \og ligne 0 \fg virtuelle) fait référence à son successeur et son prédécesseur. On stocke également la longueur de l'information (\og longueur utile \fg) et le nombre d'octets disponibles dans l'enregistrement (\og longueur max \fg, supérieure ou égale à la longueur utile).
-
-\begin{figure}[H]
-	\centering
-	\caption{Structure du fichier temporaire de la solution 3}
-	\includegraphics[width=0.6\textwidth]{structure_chainee_temp}
-\end{figure}
-
-L'accès direct (lorsque l'utilisateur demande d'accéder à la ligne $l$, par exemple) est possible toutes les $L$ lignes ($L$ à définir) grâce à la table de \textsl{mapping}, qui donne pour chaque bloc la dernière ligne stockée dans celui-ci. Cette table est bien sûr complétée et mise à jour au fur et à mesure de l'édition du fichier (suppressions, ajouts, \ldots). Pour accéder à une ligne non indexée, il suffit d'accéder à une ligne proche et indexée, et de suivre le chaînage (complexité bornée).
-
-Cette table contient bien sûr d'autres informations, comme le montre la représentation suivante.
-
-\newcommand{\TableSolTroisHLine}{\cline{1-5} \cdashline{6-6} \cline{7-7}}
-\begin{figure}[H]
-	\centering
-	\caption{Structure de la table de \textsl{mapping} de la solution 3}
-	\vspace{3mm}
-	\begin{tabular}{|c|c|c|c|c|c|c|}
-		N\textdegree{} ligne & N\textdegree{} bloc & Octet & Chargé & Date dernier accès & (Autres infos) & Adresse MC \\
-		\TableSolTroisHLine
-		10 & 1 & 156 & Non & 1289135888657534079 & \ldots & \texttt{0x000000}\\
-		\TableSolTroisHLine
-		\multicolumn{7}{:c:}{} \\
-		\multicolumn{7}{:c:}{\ldots} \\
-		\multicolumn{7}{:c:}{} \\
-		\TableSolTroisHLine
-		119 & N & 451 & Oui & 1289135888658945079 & \ldots & \texttt{0x4006d4}\\
-		\TableSolTroisHLine
-	\end{tabular}
-\end{figure}
+{\huge TODO}
 
 
 
@@ -200,12 +163,72 @@ importance respectives.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Détail de la solution choisie}
 
-\subsection{Mécanisme de stockage en mémoire secondaire permettant l'accès direct}
-% Yoann
-
 \subsection{Structuration d'une ligne en mémoire secondaire et en mémoire
     centrale}
 % Yoann
+{\huge TODO}
+Le ficher temporaire est chaîné grâce à des adresses virtuelles, comme présentées ci-dessous.
+
+\begin{figure}[H]
+	\centering
+	\caption{Structure d'une adresse virtuelle}
+	\includegraphics[width=0.5\textwidth]{structure_chainee_temp_adresse_virtuelle}
+\end{figure}
+
+Ainsi chaque ligne (y compris la \og ligne 0 \fg virtuelle) fait référence à son successeur et son prédécesseur. On stocke également la longueur de l'information (\og longueur utile \fg) et le nombre d'octets disponibles dans l'enregistrement (\og longueur max \fg, supérieure ou égale à la longueur utile).
+
+\begin{figure}[H]
+	\centering
+	\caption{Structure du fichier temporaire de la solution 3}
+	\includegraphics[width=0.6\textwidth]{structure_chainee_temp}
+\end{figure}
+
+Lors d'une insertion, on ajoute la lignel'algorithme classique d'insertion d'un élément dans une liste chaînée est utilisé :
+
+\subsection{Mécanisme de stockage en mémoire secondaire permettant l'accès direct}
+% Yoann
+{\huge TODO :
+\begin{itemize}
+	\item REVOIR : indexation par numéro de bloc ?
+	\item Compléter table mapping (autres infos)
+	\item Ajouter des lignes dans la table de mapping
+\end{itemize}
+}
+
+L'accès direct (lorsque l'utilisateur demande d'accéder à la ligne $l$, par exemple) est possible grâce à la table de \textsl{mapping}, qui donne pour chaque bloc la dernière ligne stockée dans celui-ci.
+
+\newcommand{\TableSolTroisHLine}{\cline{1-5} \cdashline{6-6} \cline{7-7}}
+\begin{table}[H]
+	\centering
+	\caption{Structure de la table de \textsl{mapping} de la solution 3}
+	\vspace{3mm}
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		N\textdegree{} ligne & N\textdegree{} bloc & Octet & Chargé & Date dernier accès & (Autres infos) & Adresse MC \\
+		\TableSolTroisHLine
+		10 & 1 & 156 & Non & 1289135888657534079 & \ldots & \texttt{0x000000}\\
+		\TableSolTroisHLine
+		\multicolumn{7}{:c:}{} \\
+		\multicolumn{7}{:c:}{\ldots} \\
+		\multicolumn{7}{:c:}{} \\
+		\TableSolTroisHLine
+		119 & N & 451 & Oui & 1289135888658945079 & \ldots & \texttt{0x4006d4}\\
+		\TableSolTroisHLine
+	\end{tabular}
+\end{table}
+
+A la construction du fichier, on mémorise dans cette table l'adresse virtuelle d'une ligne toutes les $L$ lignes ($L$ à définir). La table est indexée par le numéro de ligne.
+A l'ajout d'une ligne, la table est mise à jour :
+\begin{itemize}
+	\item Les enregistrements concernant les lignes suivantes voient leur index incrémenté (le numéro de ligne est mis à jour).
+	\item Si la ligne précédant celle insérée dans la table et la ligne suivante ont désormais une différence d'index supérieure à $L$, une ligne est choisie entre les deux pour être rajoutée à la table.
+\end{itemize}
+
+Lorsque l'on désire accéder directement à une certaine ligne, il suffit de trouver la ligne la plus proche qui soit indexée dans la table, puis de suivre le chaînage. Grâce aux opérations réalisées à l'ajout d'une ligne, on s'assure de borner (par $0$ et $L$) le nombre de chaînages à parcourir avant de trouver la ligne désirée. L'accès n'est donc pas réellement \emph{direct}, mais il en a les propriétés (la complexité algorithmique constante).
+
+Cette solution permet d'éviter de stocker une entrée dans la table pour chaque ligne, ce qui pourrait se révéler coûteux en mémoire dans le cas d'un très grand fichier. 
+
+Le lecteur attentif aura noté que la table comporte un risque de dégénérescence, si toutes les lignes non indexées sont supprimées. C'est pourquoi on fixera un seuil $Lmin$ : lorsque, à la suite d'une suppression, un index se retrouvera compris entre deux autres dont l'écart d'index est inférieur à $Lmin$, il sera \og dés-indexé \fg. 
+
 
 \subsection{Gestion des blocs sur la mémoire secondaire pour faire de l'accès
     direct}
@@ -215,6 +238,7 @@ importance respectives.
 % Paul
 Il semble intéressant de pouvoir minimiser la taille du fichier temporaire, qui
 grossit au fil du temps, afin de réduire le nombre de maillons
+% Yoann : ATTENTION, je crois qu'il parle plutôt de récupérer l'espace libre en mémoire centrale. En TD il avait l'air de dire que le fichier temporaire, on s'en branle.
 
 \section{Proposition d'architecture}
 % Paul
@@ -238,7 +262,7 @@ Couche page & Prend en charge le mécanisme de découpage en pages du texte char
 Couche ligne & Prend en charge le mécanisme de découpage en ligne d'une page.
 \\
 	\hline
-Couche adressage & Implémente le mécanisme d'adresse virtuel pour l'accès direct
+Couche adressage & Implémente le mécanisme d'adresse virtuelle pour l'accès direct
 présenté dans les parties précédentes\\
 \hline
 Couche physique & Prend en charge les appels système pour interagir avec le
