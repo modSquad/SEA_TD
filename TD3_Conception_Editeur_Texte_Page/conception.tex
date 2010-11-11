@@ -175,7 +175,6 @@ importance respectives.
 
 \subsection{Structuration d'une ligne en mémoire secondaire et en mémoire centrale}
 % Yoann
-\colorbox{red}{\huge TODO}
 Le ficher temporaire est chaîné grâce à des adresses virtuelles, c'est à dire des chiffres permettant de retrouver une ligne dans le fichier temporaire.
 
 \begin{figure}[H]
@@ -197,57 +196,60 @@ La même structure est conservée en mémoire centrale, mais les blocs ne sont p
 
 \begin{itemize}
 	\item Lors d'une insertion, l'algorithme classique d'insertion d'un élément dans une liste chaînée est utilisé. Le nouvel enregistrement est placé au premier espace libre du fichier temporaire quoi soit assez grand pour l'accueillir\footnote{Cf. page \pageref{subsec:gestionespacelibre} : \og\nameref{subsec:gestionespacelibre}\fg}, et les adresses concernées (précédante, suivante, suivante de la précédante, précédante de la suivante) sont mises à jour.
-	\item Lors d'une modification entraînant un dépassement de la taille maximum de la ligne, on la déplace dans le premier espace libre assez grand pour l'accueillir, 
+	\item Lors d'une modification entraînant un dépassement de la taille maximum de la ligne, on la déplace dans le premier espace libre assez grand pour l'accueillir, et on met à jour les adresses des lignes contigües.
 	\item Lors d'une suppression, on met simplement à jour les adresses des lignes contigües afin d'enlever la ligne supprimée du chaînage.
+\end{itemize}
 
 On remarquera qu'une ligne \og zéro \fg a été ajoutée, ceci pour permettre de généraliser les opérations d'insertion et de suppression de ligne. De même, une ligne de \og fin \fg est présente (non représentée sur les schémas). Aucune de ces deux lignes n'est affichée à l'écran.
 
 
 \subsection{Mécanisme de stockage en mémoire secondaire permettant l'accès direct}
 % Yoann
-\colorbox{red}{\begin{minipage}{15cm}
-\huge TODO :
-\begin{itemize}
-	\item REVOIR : indexation par numéro de bloc ?
-	\item Compléter table mapping (autres infos)
-	\item Ajouter des lignes dans la table de mapping
-\end{itemize}
-	\end{minipage}
-}
 
-L'accès direct dans le fichier temporaire est possible grâce à la table de \textsl{mapping}, qui donne, pour une partie des lignes, l'adresse virtuelle de celle-ci.
+L'accès direct dans le fichier temporaire est possible grâce à la table de \textsl{mapping}, qui donne, pour une partie des lignes, l'adresse virtuelle de celles-ci.
 
-\newcommand{\TableSolTroisHLine}{\cline{1-5} \cdashline{6-6} \cline{7-7}}
+\newcommand{\TableSolTroisHLine}{\cline{1-4} \cline{6-6}}
 \begin{table}[H]
 	\centering
-	\caption{Structure de la table de \textsl{mapping} de la solution 3}
-	\vspace{3mm}
-	\begin{tabular}{|c|c|c|c|c|c|c|}
-		N\textdegree{} ligne & N\textdegree{} bloc & Octet & Chargé & Date dernier accès & (Autres infos) & Adresse MC \\
-		\TableSolTroisHLine
-		10 & 1 & 156 & Non & 1289135888657534079 & \ldots & \texttt{0x000000}\\
-		\TableSolTroisHLine
-		\multicolumn{7}{:c:}{} \\
-		\multicolumn{7}{:c:}{\ldots} \\
-		\multicolumn{7}{:c:}{} \\
-		\TableSolTroisHLine
-		119 & N & 451 & Oui & 1289135888658945079 & \ldots & \texttt{0x4006d4}\\
-		\TableSolTroisHLine
+	\caption{Structure de la table de \textsl{mapping} de la solution 3 (exemple pour $L = 10$)}
+	\begin{tabular}{|c|c|}
+		N\textdegree{} ligne & Adresse virtuelle \\
+		\hline
+		\hline
+		10 & bloc 226, octet 156 \\
+		\hline
+		18 & bloc 226, octet 212 \\
+		\hline
+		25 & bloc 227, octet 61 \\
+		\hline
+		\multicolumn{2}{:c:}{} \\
+		\multicolumn{2}{:c:}{\ldots} \\
+		\multicolumn{2}{:c:}{} \\
+		\hline
+		110 & bloc 54, octet 451 \\
+		\hline
+		120 & bloc 54, octet 564 \\
+		\hline
 	\end{tabular}
 \end{table}
 
-A la construction du fichier, on mémorise dans cette table l'adresse virtuelle d'une ligne toutes les $L$ lignes ($L$ à définir). La table est indexée par le numéro de ligne.
-A l'ajout d'une ligne, la table est mise à jour :
+À la construction du fichier, on mémorise dans cette table l'adresse virtuelle d'une ligne toutes les $L$ lignes ($L$ à définir). La table est indexée par le numéro de ligne.
+
+Lors de l'ajout d'une ligne, la table est mise à jour :
 \begin{itemize}
 	\item Les enregistrements concernant les lignes suivantes voient leur index incrémenté (le numéro de ligne est mis à jour).
-	\item Si la ligne précédant celle insérée dans la table et la ligne suivante ont désormais une différence d'index supérieure à $L$, une ligne est choisie entre les deux pour être rajoutée à la table.
+	\item Si la ligne précédant celle insérée dans la table et la ligne suivante ont désormais une différence d'index supérieure à $L$, une ligne est choisie entre les deux pour être insérée dans l'index.
 \end{itemize}
+
+Lors de la modification d'une ligne indexée entraînant un déplacement de celle-ci, son adresse dans la table de \textsl{mapping} est mise à jour.
+
+Lors de la suppression d'une ligne indexée, elle est supprimée de la table.\\
 
 Lorsque l'on désire accéder directement à une certaine ligne, il suffit de trouver la ligne la plus proche qui soit indexée dans la table, puis de suivre le chaînage. Grâce aux opérations réalisées à l'ajout d'une ligne, on s'assure de borner (par $0$ et $L$) le nombre de chaînages à parcourir avant de trouver la ligne désirée. L'accès n'est donc pas réellement \emph{direct}, mais il en a les propriétés (la complexité algorithmique constante).
 
 Cette solution permet d'éviter de stocker une entrée dans la table pour chaque ligne, ce qui pourrait se révéler coûteux en mémoire dans le cas d'un très grand fichier. 
 
-Le lecteur attentif aura noté que la table comporte un risque de dégénérescence, si toutes les lignes non indexées sont supprimées. C'est pourquoi on fixera un seuil $Lmin$ : lorsque, à la suite d'une suppression, un index se retrouvera compris entre deux autres dont l'écart d'index est inférieur à $Lmin$, il sera \og dés-indexé \fg. 
+Le lecteur attentif aura noté que la table comporte un risque de dégénérescence, si toutes les lignes non indexées sont supprimées : alors toutes les lignes restantes seront indexées. C'est pourquoi on fixera un seuil $Lmin$ : lorsque, à la suite d'une suppression, un index se retrouvera compris entre deux autres dont l'écart d'index est inférieur à $Lmin$, il sera \og dés-indexé \fg. 
 
 
 \subsection{Gestion des blocs sur la mémoire secondaire pour faire de l'accès
@@ -257,9 +259,9 @@ Le lecteur attentif aura noté que la table comporte un risque de dégénéresce
 % COMMENTAIRES - Yoann :
 %% Cf. schéma du paragraphe "structuration d'une ligne en mémoire secondaire et en mémoire centrale"
 %% Le titre veut rien dire, et il ressemble beaucoup à "Mécanisme de stockage en mémoire secondaire
-%% permettant l'accès direct". Je pense qu'il dire ici à quel moment on transfère l'information du
-%% buffer vers le fichier temporaire et inversement. En tout cas il faut le dire quelque part, et
-%% ailleurs ça m'a pas l'air de coller.
+%% permettant l'accès direct". Je pense qu'il faut dire ici à quel moment on transfère l'information du
+%% buffer vers le fichier temporaire et inversement, et comment on gère les blocs actuellement chargés en mémoire tampon.
+%% En tout cas il faut le dire quelque part, et ailleurs ça m'a pas l'air de coller.
 
 \subsection{Gestion de l'espace libre}
 	\label{subsec:gestionespacelibre}
@@ -270,7 +272,7 @@ grossit au fil du temps, afin de réduire le nombre de maillons
 \section{Proposition d'architecture}
 % Paul
 % Découpage modulaire et hiérarchique
-L'architecture choisie sera en couches, afin de découpler le code, et de
+L'architecture choisie sera organisée en couches, afin de découpler le code, et de
 permettre une meilleur maintenabilité. On pourrait même imaginer insérer
 d'autres couche entre celles présentes dans le tableau ci-dessous, afin de, par
 exemple, ajouter facilement un mécanisme d'historique, qui semble intéressant
