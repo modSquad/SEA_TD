@@ -57,7 +57,7 @@ sont du type \texttt{memmove()}, qui permet de déplacer des données dans un
 % Martin
 La seconde solution proposée est une variation de la première. La structure de
 données en mémoire secondaire reste identique : nous conservons le fichier sous
-la forme d'une structure de caractères contigüs. Cependant, le bloc texte est
+la forme d'une structure de caractères contigües. Cependant, le bloc texte est
 fragmenté en sous-blocs de taille donnée en mémoire centrale et stockée dans
 des éléments d'une liste doublement chaînée. Les éléments sont chaînés dans
 l'ordre des données du fichier.
@@ -110,19 +110,22 @@ maintenabilité est très faible.
 % Yoann
 Cette solution étend la notion de chaînage à la mémoire secondaire.
 
-Le fichier temporaire n'a plus une structure séquentielle, mais doublement chaînée : chaque ligne est stockée dans une \og enveloppe \fg contenant non seulement les caractères formant cette ligne, mais aussi des adresses virtuelles permettant de retrouver, en accès direct, les lignes suivante et précédante.
+Le fichier temporaire n'a plus une structure séquentielle, mais doublement chaînée : chaque ligne est stockée dans une «~enveloppe~» contenant non seulement les caractères formant cette ligne, mais aussi des adresses virtuelles permettant de retrouver, en accès direct, les lignes suivante et précédante.
 
-Puisque le fait de rajouter cette \og enveloppe \fg va de toute manière \og casser \fg la structure initiale du fichier texte, on peut également se permettre de rajouter d'autres informations : par exemple, la longueur utile de cette ligne, et la longueur maximale. Ainsi lors d'une suppression de caractères dans une ligne, aucun déplacement de données dans le fichier n'est nécessaire : on se contente de modifier les caractères et de réduire la longueur utile.
+Puisque le fait de rajouter cette «~enveloppe~» va de toute manière «~casser~» la structure initiale du fichier texte, on peut également se permettre de rajouter d'autres informations : par exemple, la longueur utile de cette ligne, et la longueur maximale. Ainsi lors d'une suppression de caractères dans une ligne, aucun déplacement de données dans le fichier n'est nécessaire : on se contente de modifier les caractères et de réduire la longueur utile.
 
 L'insertion et la suppression de ligne sont alors très simple :
 \begin{itemize}
-	\item Une insertion se fait en ajoutant l'\og enveloppe\fg de la ligne dans un espace libre du fichier temporaire, éventuellement à la fin, et en modifiant les chaînages des lignes précédante et suivante.
-	\item Une suppression se fait simplement en modifiant les chaînages des lignes précédante et suivante.
+	\item Une insertion se fait en ajoutant l'«~enveloppe~» de la ligne dans un espace libre du fichier temporaire, éventuellement à la fin, et en modifiant les chaînages des lignes précédente et suivante.
+	\item Une suppression se fait simplement en modifiant les chaînages des lignes précédente et suivante.
 \end{itemize}
 
-La mémoire centrale est gérée de la même manière ; les blocs sont stockés tels quels dans un buffer (avec l'adresse virtuelle).
+La mémoire centrale est gérée de la même manière ; les blocs sont stockés tels
+quels dans un \emph{buffer} (avec l'adresse virtuelle).
 
-Lorsqu'on affiche une page, on part de la première ligne. Le bloc correspondant est retrouvé grâce à un système d'indexation sur le fichier temporaire, et il est copié dans le buffer. On affiche les données de la ligne, puit on lit l'adresse virtuelle de la ligne suivante : si elle correspond à un bloc non chargé en mémoire centrale, on le charge. Puis on affiche les données, on lit l'adresse de la ligne suivante, \ldots
+Lorsqu'on affiche une page, on part de la première ligne. Le bloc correspondant
+est retrouvé grâce à un système d'indexation sur le fichier temporaire, et il
+est copié dans le \emph{buffer}. On affiche les données de la ligne, puis on lit l'adresse virtuelle de la ligne suivante : si elle correspond à un bloc non chargé en mémoire centrale, on le charge. Puis on affiche les données, on lit l'adresse de la ligne suivante, \ldots
 
 
 \subsection{Comparaison des alternatives}
@@ -174,6 +177,7 @@ importance respectives.
 \section{Détail de la solution choisie}
 
 \subsection{Structuration d'une ligne en mémoire secondaire et en mémoire centrale}
+\label{sec:structurationligne}
 % Yoann
 Le ficher temporaire est chaîné grâce à des adresses virtuelles, c'est à dire des chiffres permettant de retrouver une ligne dans le fichier temporaire.
 
@@ -183,9 +187,9 @@ Le ficher temporaire est chaîné grâce à des adresses virtuelles, c'est à di
 	\includegraphics[width=0.5\textwidth]{structure_chainee_temp_adresse_virtuelle}
 \end{figure}
 
-Ainsi chaque ligne fait référence à son successeur et son prédécesseur. On stocke également la longueur de l'information (\og longueur utile \fg) et le nombre d'octets disponibles (\og longueur max \fg, supérieure ou égale à la longueur utile) dans l'enregistrement correspondant à une ligne.
+Ainsi chaque ligne fait référence à son successeur et son prédécesseur. On stocke également la longueur de l'information («~longueur utile~») et le nombre d'octets disponibles («~longueur max~», supérieure ou égale à la longueur utile) dans l'enregistrement correspondant à une ligne.
 
-La même structure est conservée en mémoire centrale, mais les blocs ne sont pas forcément dans le même ordre \footnote{Cf. page \pageref{subsec:gestionblocs} : \og\nameref{subsec:gestionblocs}\fg}. Cela permet de retrouver facilement sur le disque une ligne devant être chargée par la suite.
+La même structure est conservée en mémoire centrale, mais les blocs ne sont pas forcément dans le même ordre \footnote{Cf. page \pageref{subsec:gestionblocs} : «~\nameref{subsec:gestionblocs}~»}. Cela permet de retrouver facilement sur le disque une ligne devant être chargée par la suite.
 
 \begin{figure}[H]
 	\centering
@@ -195,12 +199,12 @@ La même structure est conservée en mémoire centrale, mais les blocs ne sont p
 \end{figure}
 
 \begin{itemize}
-	\item Lors d'une insertion, l'algorithme classique d'insertion d'un élément dans une liste chaînée est utilisé. Le nouvel enregistrement est placé au premier espace libre du fichier temporaire quoi soit assez grand pour l'accueillir\footnote{Cf. page \pageref{subsec:gestionespacelibre} : \og\nameref{subsec:gestionespacelibre}\fg}, et les adresses concernées (précédante, suivante, suivante de la précédante, précédante de la suivante) sont mises à jour.
+	\item Lors d'une insertion, l'algorithme classique d'insertion d'un élément dans une liste chaînée est utilisé. Le nouvel enregistrement est placé au premier espace libre du fichier temporaire quoi soit assez grand pour l'accueillir\footnote{Cf. page \pageref{subsec:gestionespacelibre} : «~\nameref{subsec:gestionespacelibre}~»}, et les adresses concernées (précédente, suivante, suivante de la précédante, précédante de la suivante) sont mises à jour.
 	\item Lors d'une modification entraînant un dépassement de la taille maximum de la ligne, on la déplace dans le premier espace libre assez grand pour l'accueillir, et on met à jour les adresses des lignes contigües.
 	\item Lors d'une suppression, on met simplement à jour les adresses des lignes contigües afin d'enlever la ligne supprimée du chaînage.
 \end{itemize}
 
-On remarquera qu'une ligne \og zéro \fg a été ajoutée, ceci pour permettre de généraliser les opérations d'insertion et de suppression de ligne. De même, une ligne de \og fin \fg est présente (non représentée sur les schémas). Aucune de ces deux lignes n'est affichée à l'écran.
+On remarquera qu'une ligne «~zéro~» a été ajoutée, ceci pour permettre de généraliser les opérations d'insertion et de suppression de ligne. De même, une ligne de «~fin~» est présente (non représentée sur les schémas). Aucune de ces deux lignes n'est affichée à l'écran.
 
 
 \subsection{Mécanisme de stockage en mémoire secondaire permettant l'accès direct}
@@ -249,7 +253,7 @@ Lorsque l'on désire accéder directement à une certaine ligne, il suffit de tr
 
 Cette solution permet d'éviter de stocker une entrée dans la table pour chaque ligne, ce qui pourrait se révéler coûteux en mémoire dans le cas d'un très grand fichier. 
 
-Le lecteur attentif aura noté que la table comporte un risque de dégénérescence, si toutes les lignes non indexées sont supprimées : alors toutes les lignes restantes seront indexées. C'est pourquoi on fixera un seuil $Lmin$ : lorsque, à la suite d'une suppression, un index se retrouvera compris entre deux autres dont l'écart d'index est inférieur à $Lmin$, il sera \og dés-indexé \fg. 
+Le lecteur attentif aura noté que la table comporte un risque de dégénérescence, si toutes les lignes non indexées sont supprimées : alors toutes les lignes restantes seront indexées. C'est pourquoi on fixera un seuil $Lmin$ : lorsque, à la suite d'une suppression, un index se retrouvera compris entre deux autres dont l'écart d'index est inférieur à $Lmin$, il sera «~désindexé~». 
 
 
 \subsection{Gestion des blocs sur la mémoire secondaire pour faire de l'accès
@@ -262,12 +266,44 @@ Le lecteur attentif aura noté que la table comporte un risque de dégénéresce
 %% permettant l'accès direct". Je pense qu'il faut dire ici à quel moment on transfère l'information du
 %% buffer vers le fichier temporaire et inversement, et comment on gère les blocs actuellement chargés en mémoire tampon.
 %% En tout cas il faut le dire quelque part, et ailleurs ça m'a pas l'air de coller.
+% Toujours commentaire : Paul
+% C'est moi qui ait mis les titres, je les ai copiés du poly.
 
 \subsection{Gestion de l'espace libre}
 	\label{subsec:gestionespacelibre}
 % Paul
-Il semble intéressant de pouvoir minimiser la taille du fichier temporaire, qui
-grossit au fil du temps, afin de réduire le nombre de maillons
+Lorsque beaucoup de modifications ont lieu sur le document actuellement édité,
+il peut se produire un phénomène de fragmentation dans la structure de
+donnée.
+
+Le phénomène de fragmentation se produit lorsque la taille de l'espace libre
+dans les maillons est trop faible pour effectuer une nouvelle insertion dans ce
+même maillon (voir page \pageref{sec:structurationligne} pour le procédé
+d'insertion). L'espace libre est alors «~perdu~», puisqu'aucun caractère n'y
+sera inséré.
+
+Ce phénomène rend de moins en moins efficace la solution technique, par la
+même la vitesse du logiciel, et donc finalement l'ergonomie. En effet,
+plus la fragmentation est importante, plus le nombre de blocs augmente. De plus,
+le nombre d'éléments dans la liste chainée augmente de la même manière, ce
+qui augmente le temps de recherche dans la structure de donnée.
+Enfin, un nombre plus important de maillons et de bloc signifie aussi une
+utilisation mémoire encore plus importante, puisque chaque maillon occupe des
+information annexes (pointeurs, informations sur le nombre de caractères
+utilisés et libres\ldots).
+
+Il semble donc absolument nécessaire de remédier à ce problème.
+
+Un procédé de défragmentation pourra être appelé, soit manuellement, soit à la
+sauvegarde, et reconstruira les structures de données de manière optimale, c'est
+à dire de façon à minimiser l'espace non utilisé dans les structures de données.
+Une solution pourrait consister à repartir d'un fichier d'un seul bloc et de
+reconstruire le double chainage et les adresses virtuelles. La sauvegarde semble
+alors être un bon moment pour effectuer cette opération, puisque la «~mise à
+plat~» de la structure de donnée sera déjà effectuée pour l'enregistrement sur
+disque.
+
+
 
 \section{Proposition d'architecture}
 % Paul
@@ -313,4 +349,4 @@ d'interaction utilisateur par un module de reconnaissance vocale.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bilan}
 % Martin
-% Bilan de la solution choisie par rapport aux exigeances + réflexions personnelles
+% Bilan de la solution choisie par rapport aux exigeantes + réflexions personnelles
