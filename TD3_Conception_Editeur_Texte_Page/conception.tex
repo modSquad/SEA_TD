@@ -176,7 +176,7 @@ importance respectives.
 \subsection{Structuration d'une ligne en mémoire secondaire et en mémoire centrale}
 % Yoann
 \colorbox{red}{\huge TODO}
-Le ficher temporaire est chaîné grâce à des adresses virtuelles, comme présentées ci-dessous.
+Le ficher temporaire est chaîné grâce à des adresses virtuelles, c'est à dire des chiffres permettant de retrouver une ligne dans le fichier temporaire.
 
 \begin{figure}[H]
 	\centering
@@ -184,15 +184,24 @@ Le ficher temporaire est chaîné grâce à des adresses virtuelles, comme prés
 	\includegraphics[width=0.5\textwidth]{structure_chainee_temp_adresse_virtuelle}
 \end{figure}
 
-Ainsi chaque ligne (y compris la \og ligne 0 \fg virtuelle) fait référence à son successeur et son prédécesseur. On stocke également la longueur de l'information (\og longueur utile \fg) et le nombre d'octets disponibles dans l'enregistrement (\og longueur max \fg, supérieure ou égale à la longueur utile).
+Ainsi chaque ligne fait référence à son successeur et son prédécesseur. On stocke également la longueur de l'information (\og longueur utile \fg) et le nombre d'octets disponibles (\og longueur max \fg, supérieure ou égale à la longueur utile) dans l'enregistrement correspondant à une ligne.
+
+La même structure est conservée en mémoire centrale, mais les blocs ne sont pas forcément dans le même ordre \footnote{Cf. page \pageref{subsec:gestionblocs} : \og\nameref{subsec:gestionblocs}\fg}. Cela permet de retrouver facilement sur le disque une ligne devant être chargée par la suite.
 
 \begin{figure}[H]
 	\centering
-	\caption{Structure du fichier temporaire de la solution 3}
-	\includegraphics[width=0.6\textwidth]{structure_chainee_temp}
+	\caption{Structure des données de la solution 3 (exemple)}
+	\subfloat[Structure du fichier temporaire]{\includegraphics[width=0.4\textwidth]{structure_chainee_temp}}
+	\subfloat[Structure du tampon en mémoire centrale]{\includegraphics[width=0.4\textwidth]{structure_chainee_mc}}
 \end{figure}
 
-Lors d'une insertion, on ajoute la lignel'algorithme classique d'insertion d'un élément dans une liste chaînée est utilisé :
+\begin{itemize}
+	\item Lors d'une insertion, l'algorithme classique d'insertion d'un élément dans une liste chaînée est utilisé. Le nouvel enregistrement est placé au premier espace libre du fichier temporaire quoi soit assez grand pour l'accueillir\footnote{Cf. page \pageref{subsec:gestionespacelibre} : \og\nameref{subsec:gestionespacelibre}\fg}, et les adresses concernées (précédante, suivante, suivante de la précédante, précédante de la suivante) sont mises à jour.
+	\item Lors d'une modification entraînant un dépassement de la taille maximum de la ligne, on la déplace dans le premier espace libre assez grand pour l'accueillir, 
+	\item Lors d'une suppression, on met simplement à jour les adresses des lignes contigües afin d'enlever la ligne supprimée du chaînage.
+
+On remarquera qu'une ligne \og zéro \fg a été ajoutée, ceci pour permettre de généraliser les opérations d'insertion et de suppression de ligne. De même, une ligne de \og fin \fg est présente (non représentée sur les schémas). Aucune de ces deux lignes n'est affichée à l'écran.
+
 
 \subsection{Mécanisme de stockage en mémoire secondaire permettant l'accès direct}
 % Yoann
@@ -206,7 +215,7 @@ Lors d'une insertion, on ajoute la lignel'algorithme classique d'insertion d'un 
 	\end{minipage}
 }
 
-L'accès direct (lorsque l'utilisateur demande d'accéder à la ligne $l$, par exemple) est possible grâce à la table de \textsl{mapping}, qui donne pour chaque bloc la dernière ligne stockée dans celui-ci.
+L'accès direct dans le fichier temporaire est possible grâce à la table de \textsl{mapping}, qui donne, pour une partie des lignes, l'adresse virtuelle de celle-ci.
 
 \newcommand{\TableSolTroisHLine}{\cline{1-5} \cdashline{6-6} \cline{7-7}}
 \begin{table}[H]
@@ -242,10 +251,18 @@ Le lecteur attentif aura noté que la table comporte un risque de dégénéresce
 
 
 \subsection{Gestion des blocs sur la mémoire secondaire pour faire de l'accès
-    direct}
+    direct et gestion du texte en mémoire centrale}
+	\label{subsec:gestionblocs}
 % Martin
+% COMMENTAIRES - Yoann :
+%% Cf. schéma du paragraphe "structuration d'une ligne en mémoire secondaire et en mémoire centrale"
+%% Le titre veut rien dire, et il ressemble beaucoup à "Mécanisme de stockage en mémoire secondaire
+%% permettant l'accès direct". Je pense qu'il dire ici à quel moment on transfère l'information du
+%% buffer vers le fichier temporaire et inversement. En tout cas il faut le dire quelque part, et
+%% ailleurs ça m'a pas l'air de coller.
 
 \subsection{Gestion de l'espace libre}
+	\label{subsec:gestionespacelibre}
 % Paul
 Il semble intéressant de pouvoir minimiser la taille du fichier temporaire, qui
 grossit au fil du temps, afin de réduire le nombre de maillons
