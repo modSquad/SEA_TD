@@ -213,8 +213,6 @@ importance respectives.
 
 \subsection{Gestion de l'espace libre}
 % Paul
-Il semble intéressant de pouvoir minimiser la taille du fichier temporaire, qui
-grossit au fil du temps, afin de réduire le nombre de maillons
 
 \section{Proposition d'architecture}
 % Paul
@@ -223,29 +221,38 @@ L'architecture choisie sera en couches, afin de découpler le code, et de
 permettre une meilleur maintenabilité. On pourrait même imaginer insérer
 d'autres couche entre celles présentes dans le tableau ci-dessous, afin de, par
 exemple, ajouter facilement un mécanisme d'historique, qui semble intéressant
-pour l'édition de code source.
+pour l'édition de code source. Elle se placerait entre la couche interaction
+utilisateur et la couche page, sans nécessité pour autant de toucher à ces deux
+modules (sauf, bien sur, pour ajouter les nouvelles fonctionnalités dans
+l'interface homme-machine).
 
 \begin{center}
-\begin{tabular}{l|p{7cm}}
-Nom de la couche & Description succincte \\
-\hline \hline
-Couche d'interaction utilisateur & Prend en charge l'ensemble de l'interaction
-utilisateur : entrée de commande, et retour visuel.\\
-\hline
-Couche page & Prend en charge le mécanisme de découpage en pages du texte chargé
-\\
+    \begin{tabular}{l|p{7cm}}
+	Nom de la couche & Description succincte \\
+	\hline \hline
+	Couche d'interaction utilisateur & Prend en charge l'ensemble de
+	l'interaction utilisateur : entrée de commande, et retour visuel.\\
 	\hline
-Couche ligne & Prend en charge le mécanisme de découpage en ligne d'une page.
-\\
+	Couche page & Prend en charge le mécanisme de découpage en pages du
+	texte chargé.\\
 	\hline
-Couche adressage & Implémente le mécanisme d'adresse virtuel pour l'accès direct
-présenté dans les parties précédentes\\
-\hline
-Couche physique & Prend en charge les appels système pour interagir avec le
-disque.\\
+	Couche ligne & Prend en charge le mécanisme de découpage en ligne d'une
+	page.\\
 	\hline
-	\end{tabular}
-	\end{center}
+	Couche adressage & Implémente le mécanisme d'adresse virtuel pour
+	l'accès direct présenté dans les parties précédentes\\
+	\hline
+	Couche physique & Prend en charge les appels système pour interagir
+	avec le disque.\\
+	\hline
+    \end{tabular}
+\end{center}
+
+Il sera possible de remplacer une couche par une autre, afin d'adapter
+l'éditeur à des cas très précis, sans devoir refaire entièrement son
+développement. Par exemple, le logiciel pourra être adapté pour des personnes
+ne pouvant pas utiliser un clavier, simplement en changeant la couche
+d'interaction utilisateur par un module de reconnaissance vocale.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
