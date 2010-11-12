@@ -1,5 +1,5 @@
 \BOOKMARK [0][-]{part.1}{I Introduction}{}% 1
-\BOOKMARK [0][-]{part.2}{II Sp\351cification}{}% 2
+\BOOKMARK [0][-]{part.2}{II Sp\351cifications}{}% 2
 \BOOKMARK [1][-]{section.1}{Caract\351ristiques}{part.2}% 3
 \BOOKMARK [2][-]{subsection.1.1}{P\351riph\351riques requis}{section.1}% 4
 \BOOKMARK [2][-]{subsection.1.2}{Zone tampon}{section.1}% 5
@@ -10,8 +10,8 @@
 \BOOKMARK [1][-]{section.5}{Liste des erreurs}{part.2}% 10
 \BOOKMARK [1][-]{section.6}{Bilan}{part.2}% 11
 \BOOKMARK [1][-]{section.7}{Analyse critique du mode op\351ratoire}{part.2}% 12
-\BOOKMARK [2][-]{subsection.7.1}{Comparaison avec la m\351thode de JM Pinon}{section.7}% 13
-\BOOKMARK [2][-]{subsection.7.2}{Comparaison avec la m\351thode de JF Petit}{section.7}% 14
+\BOOKMARK [2][-]{subsection.7.1}{Comparaison avec la m\351thode de J.M. Pinon}{section.7}% 13
+\BOOKMARK [2][-]{subsection.7.2}{Comparaison avec la m\351thode de J.F. Petit}{section.7}% 14
 \BOOKMARK [0][-]{part.3}{III Conception}{}% 15
 \BOOKMARK [1][-]{section.8}{Rappel du contexte}{part.3}% 16
 \BOOKMARK [1][-]{section.9}{Choix d'une solution}{part.3}% 17

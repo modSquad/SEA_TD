@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.10.3)  12 NOV 2010 08:03
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.10.3)  12 NOV 2010 11:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -723,7 +723,7 @@ Overfull \hbox (7.42719pt too wide) in paragraph at lines 54--55
 n ap-puyant sur la touche stan-dart [] Suppr [].
  []
 
-[4] <img/MenuContextuel.png, id=190, 873.2625pt x 383.4325pt>
+[4] <img/MenuContextuel.png, id=190, 722.7pt x 78.2925pt>
 File: img/MenuContextuel.png Graphic file (type png)
 
 <use img/MenuContextuel.png>
@@ -731,39 +731,42 @@ Underfull \hbox (badness 10000) in paragraph at lines 81--82
 
  []
 
-[5 <./img/MenuContextuel.png>]
-<img/EtatsEditeur.png, id=203, 716.9184pt x 403.7484pt>
+<img/EtatsEditeur.png, id=192, 716.9184pt x 403.7484pt>
 File: img/EtatsEditeur.png Graphic file (type png)
 
-<use img/EtatsEditeur.png>
-<img/MOD-Edit.png, id=204, 873.2625pt x 1020.81375pt>
+<use img/EtatsEditeur.png> [5 <./img/MenuContextuel.png>]
+<img/MOD-Edit.png, id=206, 827.09pt x 868.24374pt>
 File: img/MOD-Edit.png Graphic file (type png)
  <use img/MOD-Edit.png>
-[6 <./img/EtatsEditeur.png>] [7 <./img/MOD-Edit.png>] (./analyse.tex)) [8]
-(./conception.tex (./conception/contexte.tex) [9] [10]
+[6 <./img/EtatsEditeur.png> <./img/MOD-Edit.png>] (./analyse.tex
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
+(Font)              using `OT1/cmr/bx/n' instead on input line 4.
+
+)) [7] (./conception.tex (./conception/contexte.tex) [8] [9]
 Overfull \hbox (40.62726pt too wide) in paragraph at lines 148--171
  [][] 
  []
 
 
-<./img/structure_chainee_temp_adresse_virtuelle.pdf, id=242, 448.0873pt x 143.9
+<./img/structure_chainee_temp_adresse_virtuelle.pdf, id=237, 448.0873pt x 143.9
 2673pt>
 File: ./img/structure_chainee_temp_adresse_virtuelle.pdf Graphic file (type pdf
 )
- <use ./img/structure_chainee_temp_adresse_virtuelle.pdf> [11]
+ <use ./img/structure_chainee_temp_adresse_virtuelle.pdf> [10]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 192.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 192.
 
-<./img/structure_chainee_temp.pdf, id=252, 570.54292pt x 1242.51447pt>
+<./img/structure_chainee_temp.pdf, id=247, 570.54292pt x 1242.51447pt>
 File: ./img/structure_chainee_temp.pdf Graphic file (type pdf)
 
 <use ./img/structure_chainee_temp.pdf>
-<./img/structure_chainee_mc.pdf, id=253, 631.1714pt x 1115.58432pt>
+<./img/structure_chainee_mc.pdf, id=248, 631.1714pt x 1115.58432pt>
 File: ./img/structure_chainee_mc.pdf Graphic file (type pdf)
 
-<use ./img/structure_chainee_mc.pdf> [12 <./img/structure_chainee_temp_adresse_
+<use ./img/structure_chainee_mc.pdf> [11 <./img/structure_chainee_temp_adresse_
 virtuelle.pdf> <./img/structure_chainee_temp.pdf> <./img/structure_chainee_mc.p
 df>]
 
@@ -776,13 +779,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 250--251
 
  []
 
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 327--329
+[12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 372--374
 []\OT1/cmr/m/n/10.95 Prend en charge le m^^Secanisme de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 330--332
+Underfull \hbox (badness 10000) in paragraph at lines 375--377
 []\OT1/cmr/m/n/10.95 Prend en charge le m^^Secanisme de
  []
 
@@ -796,17 +799,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 8190 strings out of 493738
- 122371 string characters out of 3143023
+ 8192 strings out of 493738
+ 122400 string characters out of 3143023
  233969 words of memory out of 3000000
- 11242 multiletter control sequences out of 15000+200000
+ 11244 multiletter control sequences out of 15000+200000
  11807 words of font info for 41 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 48i,13n,45p,535b,485s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 48i,12n,45p,535b,485s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
@@ -821,7 +824,7 @@ xlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texl
 ive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texliv
 e/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive
 /2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on ./tmp//main.pdf (14 pages, 360278 bytes).
+Output written on ./tmp//main.pdf (14 pages, 352635 bytes).
 PDF statistics:
  371 PDF objects out of 1000 (max. 8388607)
  322 compressed objects within 4 object streams
