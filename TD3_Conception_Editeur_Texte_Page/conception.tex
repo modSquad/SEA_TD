@@ -259,7 +259,44 @@ Le lecteur attentif aura noté que la table comporte un risque de dégénéresce
 \subsection{Gestion des blocs sur la mémoire secondaire pour faire de l'accès
     direct et gestion du texte en mémoire centrale}
 	\label{subsec:gestionblocs}
-% Martin
+%Martin
+
+La structure des blocs en mémoire centrale et en mémoire secondaire est
+homogène, il est ainsi possible de charger facilement un bloc en mémoire
+secondaire qui ne serait pas encore disponible en mémoire centrale. Nous
+utilisons le mécanisme d'accès direct à la mémoire secondaire décrit
+précédemment lire un bloc à copier en mémoire centrale.
+
+Le processus est similaire à la création d'une nouveau bloc en mémoire centrale
+lorsque l'utilisateur saisit du texte : un nouveau bloc est créé à un
+emplacement libre de la mémoire centrale et sera chainé à la ligne «~fin~».
+Ensuite, les informations du bloc en mémoire secondaire ($lgUtil$, $lgMax$ et
+$info$) seront copiées dans le bloc nouvellement créé en mémoire centrale.
+
+Pour éviter de surcharger la mémoire centrale, un nombre critique de blocs sera
+conservé. Si ce nombre est atteint, alors le premier bloc de la liste (suivant
+la ligne «~zéro~») est supprimé de la mémoire centrale avant la création du
+nouveau bloc.
+
+La suppression d'un bloc en mémoire centrale implique que celui-ci ai été
+recopié en mémoire secondaire pour le que les données du fichier soient
+conservées. Ainsi, l'opération inverse (chargement d'un bloc de la mémoire
+centrale vers la mémoire secondaire) est réalisée.
+
+Deux cas de figure sont alors à envisager : soit le bloc existe déjà en mémoire
+secondaire (mais n'est pontentiellement plus à jour par rapport à la version en
+mémoire centrale), soit le bloc n'existe pas encore et il faudra le créer.
+
+Dans la première situation, nous sollicitons à nouveau le mécanisme d'accès
+direct à la mémoire secondaire pour identifier le bloc contenant la ligne à
+copier. le contenu de ce bloc et alors mis à jour d'après la version en mémoire
+centrale.
+
+Dans le second cas, il faudra créer un nouveau bloc en mémoire secondaire à un
+emplacement disponible (par exemple en queue du fichier) et chaîner le nouveau
+bloc aux blocs contenant la ligne précédante et la ligne suivante en mémoire
+secondaire.
+
 % COMMENTAIRES - Yoann :
 %% Cf. schéma du paragraphe "structuration d'une ligne en mémoire secondaire et en mémoire centrale"
 %% Le titre veut rien dire, et il ressemble beaucoup à "Mécanisme de stockage en mémoire secondaire
@@ -317,6 +354,14 @@ utilisateur et la couche page, sans nécessité pour autant de toucher à ces de
 modules (sauf, bien sur, pour ajouter les nouvelles fonctionnalités dans
 l'interface homme-machine).
 
+
+
+
+
+
+
+
+
 \begin{center}
     \begin{tabular}{l|p{7cm}}
 	Nom de la couche & Description succincte \\
@@ -350,3 +395,26 @@ d'interaction utilisateur par un module de reconnaissance vocale.
 \section{Bilan}
 % Martin
 % Bilan de la solution choisie par rapport aux exigeantes + réflexions personnelles
+La solution que nous avons choisie repose sur une architecture sélectionnée
+parmi trois porpositions, selon les critères définis par les exigences du
+cahier des charges.
+
+Les trois architectures proposées répondaient aux exigences fonctionnelles, notre
+étude s'est donc naturellement portée sur l'évaluation de la meilleure solution
+technique répondant aux exigences de portabilité, maintenabilité et efficacité.
+
+La solution retenue était de loin meilleure que les deux autres pour l'ensemble
+des critères. Elle repose sur des structures algorithmiques bien connues et
+couramment utilisées, ce qui rend son architecture abordable.
+
+Cette solution offre par ailleurs à l'utilisateur une bonne réactivité globale
+de l'application pour chacune de ses actions, au prix cependant d'un coût certain
+en mémoire : les données permettant d'indexer le texte manipulé sont conservées
+et permettent d'accélerer les traitements grâce, notamment, à des accès
+directs.
+
+Cette solution offre un ultime avantage : elle est paramétrable. En effet, il est
+possible de faire varier le nombre de blocs conservés en mémoire centrale, la
+taille d'un bloc et le pas d'indexation des lignes de texte pour choisir un bon
+compromis entre l'occupation de la mémoire centrale et la réactivité de
+l'application.

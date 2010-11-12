@@ -5,5 +5,5 @@ git checkout bin
 mv ../../main.pdf bin/main.pdf
 git add bin
 git commit -m 'Commit last binaries (automated)'
-git push origin bin
+git push origin bin -ff
 git checkout master
