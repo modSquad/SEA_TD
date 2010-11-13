@@ -6,13 +6,16 @@ Périphériques :
 \begin{itemize}
 	\item Un souris deux bouton.
 	\item Un clavier standard.
-	\item Un terminal pouvant afficher au moins 80 car/ligne, 50 lignes/page + les quatre lignes appartenant à l'interface de l'éditeur.\\
+	\item Un terminal pouvant afficher au moins 80 caractères par ligne, 50
+	lignes par page, auquel il faut ajouter les quatre lignes appartenant à
+	l'interface de l'éditeur.\\
 \end{itemize}
 
 L'éditeur de texte ne gère qu'un seul encodage : l'\textbf{ASCII étendu}.
 
 \subsection{Zone tampon}
 Cette zone mémoire contient la dernière sélection effectuée.
+
 
 \section{Comportement de l'interface}
 
@@ -22,7 +25,8 @@ Cette zone mémoire contient la dernière sélection effectuée.
 
 Un fichier ne peut être que dans 2 états :
 \begin{itemize}
-	\item Enregistré : La version affichée à l'écran et la version sur le disque sont les même.
+	\item Enregistré : La version affichée à l'écran et la version sur le
+	disque sont les mêmes.
 	\item Modifié :	La version affichée à l'écran et la version sur le disque sont différentes.
 \end{itemize}
 
@@ -90,7 +94,8 @@ L'utilisateur peut charger un fichier existant en appuyant simultanément sur le
 Il peut aussi sauvegarder le texte en cours d'édition. Il est demandé à l'utilisateur de saisir le chemin absolu du nouveau fichier. Si le nom de fichier est le même que celui qui est en cours d'édition, les modifications sont apportées sur le fichier déjà sauvegardé.
 
 \paragraph{Gestion des langues :}
-La langue de l'éditeur, \textsl{i.e.} les message d'erreur et les messages du menu contextuel, prend automatiquement celle du système.
+La langue de l'éditeur, \textsl{i.e.} les messages d'erreurs et les messages du
+menu contextuel, prennent automatiquement celle du système.
 
 \subsection{Lancement}
 Deux modes de lancement sont disponibles :
@@ -116,13 +121,14 @@ Deux modes de lancement sont disponibles :
 \end{figure}
 
 \section{Liste des erreurs}
-Seules les opérations sur les fichiers peuvent générer des erreurs. Les messages dépendent de la langue du système. Ici pour un système un Français :
+Seules les opérations sur les fichiers peuvent générer des erreurs. Les
+messages dépendent de la langue du système. Ici, pour un système un français :
 
 \paragraph{Le nom de fichier à charger n'existe pas :} Le menu contextuel affiche \og Fichier inexistant\fg
 \paragraph{Le fichier où aura lieux la sauvegarde est protégé en écriture :} Le menu contextuel affiche \og Fichier protégé\fg
 
 \section{Bilan}
-Tout en respectant un cahier des charges réaliste, notre application a le mérite de proposer toutes les fonctions de bases pour manipuler un document source. Il permet, dans un contexte \emph{multilangue}, avec des \emph{requis matériels minimalistes}, quelque soit le \emph{système d'exploitation}, ou la \emph{machine cible} :
+Tout en respectant un cahier des charges réaliste, notre application a le mérite de proposer toutes les fonctions de bases pour manipuler un document source. Il permet, dans un contexte \emph{multilingue}, avec des \emph{requis matériels minimalistes}, quelque soit le \emph{système d'exploitation}, ou la \emph{machine cible} :
 \begin{itemize}
 	\item D'effectuer toutes les opérations de fichiers du type : Ouvrir, charger, sauvegarder
 	\item D'insérer, modifier, supprimer du texte

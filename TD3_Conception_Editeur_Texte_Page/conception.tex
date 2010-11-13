@@ -77,7 +77,7 @@ caractères qu'il contient. En effet, lors de l'édition du document, de nouveau
 blocs peuvent être alloués mais pas intégralement remplis par la saisie de
 l'utilisateur. Il est donc nécessaire de retenir deux informations sur ce bloc
 : $lgUtil$, la longueur effectivement utilisée, qui correspond à la taille de
-la chaine stockée (marqueur de chaîne inclu),  et $lgMax$, la taille du bloc
+la chaine stockée (marqueur de chaîne inclus),  et $lgMax$, la taille du bloc
 $info$.
 
 Cette seconde solution est moins efficace que la première lors du chargement et
@@ -110,7 +110,7 @@ maintenabilité est très faible.
 % Yoann
 Cette solution étend la notion de chaînage à la mémoire secondaire.
 
-Le fichier temporaire n'a plus une structure séquentielle, mais doublement chaînée : chaque ligne est stockée dans une «~enveloppe~» contenant non seulement les caractères formant cette ligne, mais aussi des adresses virtuelles permettant de retrouver, en accès direct, les lignes suivante et précédante.
+Le fichier temporaire n'a plus une structure séquentielle, mais doublement chaînée : chaque ligne est stockée dans une «~enveloppe~» contenant non seulement les caractères formant cette ligne, mais aussi des adresses virtuelles permettant de retrouver, en accès direct, les lignes suivante et précédente.
 
 Puisque le fait de rajouter cette «~enveloppe~» va de toute manière «~casser~» la structure initiale du fichier texte, on peut également se permettre de rajouter d'autres informations : par exemple, la longueur utile de cette ligne, et la longueur maximale. Ainsi lors d'une suppression de caractères dans une ligne, aucun déplacement de données dans le fichier n'est nécessaire : on se contente de modifier les caractères et de réduire la longueur utile.
 
@@ -143,6 +143,8 @@ donc portable tant que la plateforme dispose d'un compilateur C++.
 Nous avons choisis de pondérer ces critères, pour prendre en compte leur
 importance respectives.
 
+\hspace{-2cm}
+\begin{minipage}{19cm}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{l c|c|c|c}
@@ -170,7 +172,7 @@ importance respectives.
 	\vspace{0.5cm}
 	\caption{Table comparative des avantages et inconvénients de chaque solution}
 \end{table}
-
+\end{minipage}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -183,8 +185,8 @@ Le ficher temporaire est chaîné grâce à des adresses virtuelles, c'est à di
 
 \begin{figure}[H]
 	\centering
-	\caption{Structure d'une adresse virtuelle}
 	\includegraphics[width=0.5\textwidth]{structure_chainee_temp_adresse_virtuelle}
+	\caption{Structure d'une adresse virtuelle}
 \end{figure}
 
 Ainsi chaque ligne fait référence à son successeur et son prédécesseur. On stocke également la longueur de l'information («~longueur utile~») et le nombre d'octets disponibles («~longueur max~», supérieure ou égale à la longueur utile) dans l'enregistrement correspondant à une ligne.
@@ -193,13 +195,13 @@ La même structure est conservée en mémoire centrale, mais les blocs ne sont p
 
 \begin{figure}[H]
 	\centering
-	\caption{Structure des données de la solution 3 (exemple)}
 	\subfloat[Structure du fichier temporaire]{\includegraphics[width=0.4\textwidth]{structure_chainee_temp}}
 	\subfloat[Structure du tampon en mémoire centrale]{\includegraphics[width=0.4\textwidth]{structure_chainee_mc}}
+	\caption{Structure des données de la solution 3 (exemple)}
 \end{figure}
 
 \begin{itemize}
-	\item Lors d'une insertion, l'algorithme classique d'insertion d'un élément dans une liste chaînée est utilisé. Le nouvel enregistrement est placé au premier espace libre du fichier temporaire quoi soit assez grand pour l'accueillir\footnote{Cf. page \pageref{subsec:gestionespacelibre} : «~\nameref{subsec:gestionespacelibre}~»}, et les adresses concernées (précédente, suivante, suivante de la précédante, précédante de la suivante) sont mises à jour.
+	\item Lors d'une insertion, l'algorithme classique d'insertion d'un élément dans une liste chaînée est utilisé. Le nouvel enregistrement est placé au premier espace libre du fichier temporaire quoi soit assez grand pour l'accueillir\footnote{Cf. page \pageref{subsec:gestionespacelibre} : «~\nameref{subsec:gestionespacelibre}~»}, et les adresses concernées (précédente, suivante, suivante de la précédente, précédente de la suivante) sont mises à jour.
 	\item Lors d'une modification entraînant un dépassement de la taille maximum de la ligne, on la déplace dans le premier espace libre assez grand pour l'accueillir, et on met à jour les adresses des lignes contigües.
 	\item Lors d'une suppression, on met simplement à jour les adresses des lignes contigües afin d'enlever la ligne supprimée du chaînage.
 \end{itemize}
@@ -215,7 +217,6 @@ L'accès direct dans le fichier temporaire est possible grâce à la table de \t
 \newcommand{\TableSolTroisHLine}{\cline{1-4} \cline{6-6}}
 \begin{table}[H]
 	\centering
-	\caption{Structure de la table de \textsl{mapping} de la solution 3 (exemple pour $L = 10$)}
 	\begin{tabular}{|c|c|}
 		N\textdegree{} ligne & Adresse virtuelle \\
 		\hline
@@ -235,6 +236,7 @@ L'accès direct dans le fichier temporaire est possible grâce à la table de \t
 		120 & bloc 54, octet 564 \\
 		\hline
 	\end{tabular}
+	\caption{Structure de la table de \textsl{mapping} de la solution 3 (exemple pour $L = 10$)}
 \end{table}
 
 À la construction du fichier, on mémorise dans cette table l'adresse virtuelle d'une ligne toutes les $L$ lignes ($L$ à définir). La table est indexée par le numéro de ligne.
@@ -265,7 +267,7 @@ La structure des blocs en mémoire centrale et en mémoire secondaire est
 homogène, il est ainsi possible de charger facilement un bloc en mémoire
 secondaire qui ne serait pas encore disponible en mémoire centrale. Nous
 utilisons le mécanisme d'accès direct à la mémoire secondaire décrit
-précédemment lire un bloc à copier en mémoire centrale.
+précédemment pour lire un bloc à copier en mémoire centrale.
 
 Le processus est similaire à la création d'une nouveau bloc en mémoire centrale
 lorsque l'utilisateur saisit du texte : un nouveau bloc est créé à un
@@ -284,17 +286,17 @@ conservées. Ainsi, l'opération inverse (chargement d'un bloc de la mémoire
 centrale vers la mémoire secondaire) est réalisée.
 
 Deux cas de figure sont alors à envisager : soit le bloc existe déjà en mémoire
-secondaire (mais n'est pontentiellement plus à jour par rapport à la version en
+secondaire (mais n'est potentiellement plus à jour par rapport à la version en
 mémoire centrale), soit le bloc n'existe pas encore et il faudra le créer.
 
 Dans la première situation, nous sollicitons à nouveau le mécanisme d'accès
 direct à la mémoire secondaire pour identifier le bloc contenant la ligne à
-copier. le contenu de ce bloc et alors mis à jour d'après la version en mémoire
+copier. Le contenu de ce bloc et alors mis à jour d'après la version en mémoire
 centrale.
 
 Dans le second cas, il faudra créer un nouveau bloc en mémoire secondaire à un
 emplacement disponible (par exemple en queue du fichier) et chaîner le nouveau
-bloc aux blocs contenant la ligne précédante et la ligne suivante en mémoire
+bloc aux blocs contenant la ligne précédente et la ligne suivante en mémoire
 secondaire.
 
 % COMMENTAIRES - Yoann :
@@ -354,14 +356,6 @@ utilisateur et la couche page, sans nécessité pour autant de toucher à ces de
 modules (sauf, bien sur, pour ajouter les nouvelles fonctionnalités dans
 l'interface homme-machine).
 
-
-
-
-
-
-
-
-
 \begin{center}
     \begin{tabular}{l|p{7cm}}
 	Nom de la couche & Description succincte \\
@@ -395,8 +389,8 @@ d'interaction utilisateur par un module de reconnaissance vocale.
 \section{Bilan}
 % Martin
 % Bilan de la solution choisie par rapport aux exigeantes + réflexions personnelles
-La solution que nous avons choisie repose sur une architecture sélectionnée
-parmi trois porpositions, selon les critères définis par les exigences du
+La solution que nous avons choisi repose sur une architecture sélectionnée
+parmi trois propositions, selon les critères définis par les exigences du
 cahier des charges.
 
 Les trois architectures proposées répondaient aux exigences fonctionnelles, notre
@@ -410,7 +404,7 @@ couramment utilisées, ce qui rend son architecture abordable.
 Cette solution offre par ailleurs à l'utilisateur une bonne réactivité globale
 de l'application pour chacune de ses actions, au prix cependant d'un coût certain
 en mémoire : les données permettant d'indexer le texte manipulé sont conservées
-et permettent d'accélerer les traitements grâce, notamment, à des accès
+et permettent d'accélérer les traitements grâce, notamment, à des accès
 directs.
 
 Cette solution offre un ultime avantage : elle est paramétrable. En effet, il est
