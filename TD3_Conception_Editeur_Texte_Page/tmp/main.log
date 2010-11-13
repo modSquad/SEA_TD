@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.10.3)  12 NOV 2010 11:12
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.10.3)  12 NOV 2010 11:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -708,26 +708,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--38
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--43
+Underfull \hbox (badness 10000) in paragraph at lines 39--40
 
  []
 
 
-Overfull \hbox (7.42719pt too wide) in paragraph at lines 54--55
+Overfull \hbox (9.25218pt too wide) in paragraph at lines 48--49
 []\OT1/cmr/m/n/10.95 L'utilisateur peut sup-pri-mer le ca-ract^^Rere cou-rant e
-n ap-puyant sur la touche stan-dart [] Suppr [].
+n ap-puyant sur la touche stan-dard [] Suppr [].
  []
 
 [4] <img/MenuContextuel.png, id=190, 722.7pt x 78.2925pt>
 File: img/MenuContextuel.png Graphic file (type png)
 
 <use img/MenuContextuel.png>
-Underfull \hbox (badness 10000) in paragraph at lines 81--82
+Underfull \hbox (badness 10000) in paragraph at lines 75--76
 
  []
 
@@ -824,7 +824,7 @@ xlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texl
 ive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texliv
 e/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive
 /2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on ./tmp//main.pdf (14 pages, 352635 bytes).
+Output written on ./tmp//main.pdf (14 pages, 352876 bytes).
 PDF statistics:
  371 PDF objects out of 1000 (max. 8388607)
  322 compressed objects within 4 object streams
