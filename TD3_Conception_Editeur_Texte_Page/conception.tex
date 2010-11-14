@@ -269,35 +269,75 @@ secondaire qui ne serait pas encore disponible en mémoire centrale. Nous
 utilisons le mécanisme d'accès direct à la mémoire secondaire décrit
 précédemment pour lire un bloc à copier en mémoire centrale.
 
-Le processus est similaire à la création d'une nouveau bloc en mémoire centrale
-lorsque l'utilisateur saisit du texte : un nouveau bloc est créé à un
-emplacement libre de la mémoire centrale et sera chainé à la ligne «~fin~».
-Ensuite, les informations du bloc en mémoire secondaire ($lgUtil$, $lgMax$ et
-$info$) seront copiées dans le bloc nouvellement créé en mémoire centrale.
+Il nous manque cependant un moyen de faire la correspondance entre un bloc en
+mémoire secondaire et un bloc en mémoire centrale, nous allons donc mettre en
+place une table de correspondance (qu'on appellera \emph{Table de mapping MC-MS})
+qui contiendra, pour chaque entrée, l'adresse virtuelle du bloc en mémoire
+centrale et l'adresse virtuelle du bloc en mémoire secondaire. Ce tableau est
+trié par numéro de bloc.
+
+\newcommand{\TableMSMCSolTroisHLine}{\cline{1-4} \cline{6-6}}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		N\textdegree{} Adresse Virtuelle MC & Adresse Virtuelle MS \\
+		\hline
+		\hline
+		bloc 1, @150 & bloc 1, @40 \\
+		\hline
+		bloc 2, @190 & bloc 2, @80 \\
+		\hline
+		bloc 3, @230 & bloc 3, @120 \\
+		\hline
+		\multicolumn{2}{:c:}{} \\
+		\multicolumn{2}{:c:}{\ldots} \\
+		\multicolumn{2}{:c:}{} \\
+		\hline
+	\end{tabular}
+	\caption{Structure de la table de \textsl{mapping MC-MS} de la solution 3}
+\end{table}
+
+Différents cas de figures font intervenir l'utilisation de cette table :
+\begin{itemize}
+	\item Le chargement d'un bloc en mémoire centrale d'après la mémoire secondaire
+	\item Le chargement d'un bloc en mémoire secondaire d'après la mémoire centrale
+	\item La mise à jour d'un bloc de la mémoire centrale vers la mémoire secondaire
+\end{itemize}
+
+
+Lorsque nous souhaitons \emph{charger un bloc en mémoire centrale d'après la mémoire 
+secondaire}, le processus est similaire à la création d'une nouveau bloc en
+mémoire centrale lorsque l'utilisateur saisit du texte : un nouveau bloc est 
+créé à un emplacement libre de la mémoire centrale et sera chainé à la ligne
+«~fin~». Ensuite, les informations du bloc en mémoire secondaire ($lgUtil$,
+$lgMax$ et $info$) seront copiées dans le bloc nouvellement créé en mémoire
+centrale. Il nous faut alors mettre à jour la table de Mapping MC-MS en ajoutant
+une entrée au tableau contenant l'adresse du bloc créé et celle du bloc original
+en mémoire secondaire.
 
 Pour éviter de surcharger la mémoire centrale, un nombre critique de blocs sera
 conservé. Si ce nombre est atteint, alors le premier bloc de la liste (suivant
 la ligne «~zéro~») est supprimé de la mémoire centrale avant la création du
-nouveau bloc.
+nouveau bloc. Cette valeur impacte le nombre de ligne que l'utilisateur peut
+visualiser sur un même écran et indique la taille de la table de Mapping MC-MS.
 
 La suppression d'un bloc en mémoire centrale implique que celui-ci ai été
 recopié en mémoire secondaire pour le que les données du fichier soient
-conservées. Ainsi, l'opération inverse (chargement d'un bloc de la mémoire
-centrale vers la mémoire secondaire) est réalisée.
+conservées. Deux cas de figure sont alors à envisager : soit le bloc existe
+déjà en mémoire secondaire (mais n'est potentiellement plus à jour par rapport
+à la version en mémoire centrale), soit le bloc n'existe pas encore en mémoire
+secondaire et il faudra le créer.
 
-Deux cas de figure sont alors à envisager : soit le bloc existe déjà en mémoire
-secondaire (mais n'est potentiellement plus à jour par rapport à la version en
-mémoire centrale), soit le bloc n'existe pas encore et il faudra le créer.
+Dans la première situation (correspondant au cas \emph{mise à jour d'un bloc de la mémoire
+centrale vers la mémoire secondaire}), nous utilisons la table de
+Mapping MC-MS pour obtenir l'adresse du bloc en mémoire secondaire et mettre
+à jour son contenu ($lgUtil$, $lgMax$ et $info$).
 
-Dans la première situation, nous sollicitons à nouveau le mécanisme d'accès
-direct à la mémoire secondaire pour identifier le bloc contenant la ligne à
-copier. Le contenu de ce bloc et alors mis à jour d'après la version en mémoire
-centrale.
-
-Dans le second cas, il faudra créer un nouveau bloc en mémoire secondaire à un
-emplacement disponible (par exemple en queue du fichier) et chaîner le nouveau
-bloc aux blocs contenant la ligne précédente et la ligne suivante en mémoire
-secondaire.
+Dans le second cas (\emph{chargement d'un bloc en mémoire secondaire d'après la mémoire centrale}),
+il faudra créer un nouveau bloc en mémoire secondaire à un emplacement disponible (par exemple
+en queue du fichier) et chaîner le nouveau bloc aux blocs contenant la ligne précédente et
+la ligne suivante en mémoire secondaire. La table de Mapping MC-MS est ensuite mise à jour :
+on ajoute l'entrée correspondant au bloc qui vient d'être créé en mémoire secondaire.
 
 % COMMENTAIRES - Yoann :
 %% Cf. schéma du paragraphe "structuration d'une ligne en mémoire secondaire et en mémoire centrale"
