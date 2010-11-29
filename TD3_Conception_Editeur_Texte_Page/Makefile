@@ -20,7 +20,7 @@ $(TMPPATH):
 $(IMGPATH):
 	mkdir $@
 
-$(BINPATH)/$(OUTPUT): $(DOCPATH)/$(SOURCE) $(SOURCEDEPS)
+$(BINPATH)/$(OUTPUT): $(DOCPATH)/$(SOURCE) $(SOURCEDEPS) 
 # Processing twice to handle references inside the document
 	cd $(DOCPATH) ; \
 	for i in 1 2 ; \
