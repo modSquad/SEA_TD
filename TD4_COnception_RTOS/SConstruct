@@ -1,0 +1,29 @@
+import os
+import SCons
+
+######################################
+outputName = "TD4_SEA_COnception_RTOS"
+######################################
+
+env = Environment(ENV=os.environ)
+
+texName = "main"
+binPath = "bin/"
+srcPath = "src/"
+tmpPath = "tmp/"
+imgPath = "img/"
+
+paths = [binPath, srcPath, tmpPath, imgPath]
+for p in paths:
+	if not os.path.exists(p): os.makedirs(p)
+
+
+
+buildRes = env.PDF(target = tmpPath + texName + ".pdf", source = srcPath + texName + ".tex") 
+env.AddPostAction(buildRes, "cp " + tmpPath + texName + ".pdf " +  binPath + outputName + ".pdf") 
+
+sconsSubFiles = []
+
+for s in sconsSubFiles:
+	env.AddPostAction(buildRes, "cd " + s + " && scons" ) 
+

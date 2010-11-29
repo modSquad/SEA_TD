@@ -1,0 +1,45 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[english, french]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage{hyperref}
+\usepackage{float}
+
+\usepackage[top=20mm, bottom=20mm, left=25mm, right=25mm]{geometry}
+\pagestyle{fancy}
+
+\newcommand{\nHeader}[3]
+{
+	\title{\textbf{#1}}
+	\author{#2}
+	\lhead{#3}
+	\cfoot{\thepage\ of \pageref{LastPage}}
+}
+
+\newcommand{\nTitle}[1]
+{
+	\newpage			
+	\vspace*{\fill}		
+	\begin{center}	
+		\part{#1}		
+	\end{center}
+	\vspace*{\fill}		
+	\newpage			
+	\setcounter{section}{1}
+}
+
+\newenvironment{nAbstract}		
+{								
+	\vspace*{\fill}				
+	\begin{center}				
+		\begin{abstract}		
+}
+{
+		\end{abstract}			
+	\end{center}				
+	\vspace*{\fill}				
+}
