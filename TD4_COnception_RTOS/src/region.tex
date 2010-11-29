@@ -1,0 +1,30 @@
+\Objet{Région}
+{
+Les objets \og région\fg assurent la gestion des exclusions mutuelles (\textsl{mutex}), C'est à dire que la tâche utilisant cette région ne sera jamais préemptée, pas même par des tâches de priorité plus haute.
+}
+{
+\begin{itemize}
+	\item Identifiant : \texttt{int}
+\end{itemize}
+}
+{
+Les objets de type région peuvent prendre deux états : LIBRE ou OCCUPÉE. À sa création, une région est libre.
+
+\paragraph{Primitives :}
+Toutes les primitives renvoient -1 en cas d'erreur (\textsl{e.g} plus de mémoire disponible, identifiant invalide, \textsl{etc.}). Sauf indication contraire, elles renvoient 0 en cas de succès.
+
+\begin{itemize}
+	\item \texttt{int creer\_region()} : Créer une nouvelle région et renvoie son identifiant.
+	\item \texttt{int detruire\_region(int)} : Détruire la région dont l'identifiant est passé en paramètre. 
+	\item \texttt{int entrer(int)} : Rentre dans le région dont l'identifiant est passé en paramètre. Dans un contexte monoprocesseur, on est assuré que si la région est déjà occupée, elle l'est par la tâche courante. Dans le cas où la tâche demande à rentrer dans un région dans laquelle elle est déjà, sa demande est ignorée.
+	\item \texttt{int sortir(int)} : Sort de la région dont l'identifiant est passé en paramètre. Si une tâche demande à sortir d'une région dans laquelle elle n'est pas, sa demande est ignorée.
+\end{itemize}
+}
+{
+Il est à noter que :
+\begin{itemize}
+	\item Les opérations d'attente passive et de terminaison de la tâche sont interdites dans une région.
+	\item Les régions sont imbricables les unes dans les autres.
+\end{itemize}
+}
+{etatRegion.png}
