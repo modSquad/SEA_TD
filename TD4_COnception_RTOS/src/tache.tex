@@ -1,30 +1,28 @@
-\Objet{Tâche}
+\Object{Tâche}
 {
-	
+Une tâche représente un fil d'exécution, \textsl{i.e.} un ensemble d'instructions exécuté sur un même processeur. Elle peut s'exécuter (état \lstinline{ACTIVE}), attendre d'avoir la main sur le processeur (état \lstinline{ACTIVABLE}) ou attendre l'autorisation d'une ou plusieurs autres tâches. 
+
+Si une des méthode \lstinline{attendre}, \lstinline{entrer}, \lstinline{suspendre}, ou \lstinline{prendre} est appelée, la tâche appelante passe dans le méta-état \lstinline{BLOQUE} jusqu'à ce que l'une des méthode suivante soit appelée : \lstinline{signaler}, \lstinline{sortir}, \lstinline{reprendre} ou \lstinline{donner}.
 }
 {
+La structure \lstinline{struct tache} est composée de :
 \begin{itemize}
-	\item id : \texttt{int}
-	\item etat : \texttt{enum\{TODO\}} 
-	\item priorite : \texttt{int} 
+	\item id : \lstinline{int}
+	\item etat : \lstinline{enum \{ ACTIVABLE, ACTIVE, SUSPENDUE, ATTENTE\_EVENEMENT, ATTENTE\_REGION, ATTENTE\_SEMAPHORE \}} 
+	\item attente\_id : \lstinline{int}
+	\item evenements\_attente : Liste d'identifiants d'événements.
+	\item priorite : \lstinline{int} 
 \end{itemize}
 }
 {
-\paragraph{Primitives :}
 Toutes les primitives avec un type de retour entier, renvoient -1 en cas d'erreur (\textsl{e.g} plus de mémoire disponible, identifiant invalide, \textsl{etc.}). Sauf indication contraire, elles renvoient 0 en cas de succès.
 
 \begin{itemize}
-	\item \texttt{int creer\_tache( void(*) fonction(), int priorite, void* n1, void* n2, ..., void* n10)} : Crée une nouvelle tâche appelant la fonction \texttt{fonction} passée en paramètres, et dont les paramètres d'appels sont les valeurs \texttt{n1} à \texttt{n10}. Si la fonction à appeller prend moins de 10 paramètres, les paramètres inutiles sont ignorés. La priorité de la tâche crée est celle passée en paramètre. En cas de succès, son identifiant est retourné. À la création, la tâche est suspendue.
-	\item \texttt{int detruire\_tache(int id)} : Détruit la tâche dont l'identifiant est passée en paramètre. 
-	
-	\item \texttt{int demarrer(int id)} : Démarre la tâche dont l'identifiant est passé en paramètre.
-	\item \texttt{int suspendre(int id)} : Suspend la tâche dont l'identifiant est passé en paramètre. 
-	\item \texttt{int terminer(int id)} : Tue la tâche dont l'identifiant est passé en paramètre.
-	
-	\item \texttt{int changer\_priorite(int id, int priorite)} : Change la priorité de la tâche dont l'identifiant est passé en paramètre à la priorité passée en paramètre.
-
-	\item \texttt{int obtenir\_id()} : Retourne l'identifiant de la tâche courante.
-	\item \texttt{enum obtenir\_etat(int id)} : Retourne l'état de la tâche dont l'identifiant est passé en paramètre. Si l'identifiant passé en paramètre est invalide, \texttt{INEXISTANT} est renvoyé.
-	\item \texttt{int obtenir\_priorite(int id)} : Retourne la priorité de la tâche dont l'identifiant est passé en paramètre.
+	\item \lstinline{int demarrer(struct tache* t)} : Démarre la tâche passée en paramètre.
+	\item \lstinline{int suspendre(struct tache* t)} : Suspend la tâche passée en paramètre. 
+	\item \lstinline{int terminer(struct tache* t)} : Tue la tâche passée en paramètre.
+	\item \lstinline{struct tache* tacheCourrante()} : Renvoie la structure de la tâche courante, \textsl{i.e.} la tâche d'où cette fonction est appelée.
 \end{itemize}
 }
+{}
+{L'ordonnancement des tâches est délégué à une agence.}
