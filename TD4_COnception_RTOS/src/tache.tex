@@ -15,7 +15,7 @@ Toutes les primitives avec un type de retour entier, renvoient -1 en cas d'erreu
 
 \begin{itemize}
 	\item \texttt{int creer\_tache( void(*) fonction(), int priorite, void* n1, void* n2, ..., void* n10)} : Crée une nouvelle tâche appelant la fonction \texttt{fonction} passée en paramètres, et dont les paramètres d'appels sont les valeurs \texttt{n1} à \texttt{n10}. Si la fonction à appeller prend moins de 10 paramètres, les paramètres inutiles sont ignorés. La priorité de la tâche crée est celle passée en paramètre. En cas de succès, son identifiant est retourné. À la création, la tâche est suspendue.
-	\item \texttt{int detruire\_tache(int id)} : Détruit la tâche dont l'identifiant est passée en paramètre.
+	\item \texttt{int detruire\_tache(int id)} : Détruit la tâche dont l'identifiant est passée en paramètre. 
 	
 	\item \texttt{int demarrer(int id)} : Démarre la tâche dont l'identifiant est passé en paramètre.
 	\item \texttt{int suspendre(int id)} : Suspend la tâche dont l'identifiant est passé en paramètre. 

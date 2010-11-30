@@ -1,4 +1,4 @@
-\Objet{Région}
+\Object{Région}
 {
 Les objets \og région\fg assurent la gestion des exclusions mutuelles (\textsl{mutex}), C'est à dire que la tâche utilisant cette région ne sera jamais préemptée, pas même par des tâches de priorité plus haute.
 }
@@ -25,6 +25,7 @@ Il est à noter que :
 \begin{itemize}
 	\item Les opérations d'attente passive et de terminaison de la tâche sont interdites dans une région.
 	\item Les régions sont imbricables les unes dans les autres.
+	\item Dans un contexte multi-processeur, il peut y avoir concurrence d'accès à la région entre deux tâche. Dans ce cas, la primitive \texttt{entrer} est bloquante pour la deuxième tâche appelante tant que la région n'est pas libérée.
 \end{itemize}
 }
 {etatRegion.png}
