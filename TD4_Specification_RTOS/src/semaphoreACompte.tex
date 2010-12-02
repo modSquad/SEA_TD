@@ -1,4 +1,4 @@
-\section{Sépcification d'un sémaphore a compte}
+\section{Sémaphore a compte}
 
 Nous allons à présent décrire la spécification des sémaphores à compte tels
 qu'ils existeront dans notre RTOS. Nous gardons en mémoire notre objectif de
@@ -7,36 +7,34 @@ simplicité et de légereté.
 Le sémaphore a compte est un objet permettant de protéger une ressource
 critique. On peut représenter le sémaphore par analogie avec une boite qui
 contient un certain nombre de jetons. Des utilisateurs se partageant une
-ressource ne peuvent y accéder qu'à la condition de \em{prendre} un jeton
-disponible, et le \em{rendent} une fois qu'ils n'ont plus besoin de la
+ressource ne peuvent y accéder qu'à la condition de \emph{prendre} un jeton
+disponible, et le \emph{rendent} une fois qu'ils n'ont plus besoin de la
 ressource critique.
-
-Le sémaphore est représenté et manipulé par l'utilisateur grâce à un
-identifiant communiqué à l'utilisateur lors de l'initialisation de l'objet
-(symbole de type \texttt{semid_t}).
 
 \subsection{Initialisation du sémaphore}
 
 L'initialisation d'un sémaphore permet de créer l'objet. L'utilisateur définit le nombre de jetons qu'il peut contenir et le nombre qu'il contient à la création de l'objet.
 
-L'utilisateur peut utiliser la fonction \texttt{semid_t creerSemaphore(int maxJetons,
-int initJetons)}, où \texttt{maxJeton} correspond au maximum de jetons que peux accueillir le sémaphore et \texttt{initJetons} le nombre de 
+Le sémaphore est représenté et manipulé par l'utilisateur grâce à un identifiant communiqué à l'utilisateur lors de l'initialisation de l'objet (symbole de type \texttt{semid\_t}).
+
+L'utilisateur peut utiliser la fonction \texttt{semid\_t creerSemaphore(int maxJetons, int initJetons)}, où \texttt{maxJeton} correspond au maximum de jetons que peux accueillir le sémaphore et \texttt{initJetons} le nombre de jeton initial.
+
 
 \subsection{Destruction du sémaphore}
 La déstruction d'un sémaphore détruit l'objet et le supprime de la mémoire. Si des utilisateurs attendaient la libération d'un jeton, alors ils seront libérés et l'utilisateur sera notifié par un code retour particulier (voir ci-dessous).
 
-L'utilisateur souhaitant détruire le sémaphore utilisera la procédure \texttt{void supprSemaphore(semid_t semId)}.
+L'utilisateur souhaitant détruire le sémaphore utilisera la procédure \texttt{void supprSemaphore(semid\_t semId)}.
 
 \subsection{Prendre un jeton}
 L'utilisateur souhaitant accéder à la ressource partagée doit prendre un jeton
 dans le sémaphore. Il peut spécifier la stratégie d'attente si aucun jeton
 n'est disponible.
 
-La signature de la fonction est la suivante : \texttt{int prendre(semid_t semId, int attendre)}.
+La signature de la fonction est la suivante : \texttt{int prendre(semid\_t semId, int attendre)}.
 
 La fonction retourne 1 si l'utilisateur a obtenu un jeton, 0 si non et -1 si le sémaphore identifié par semId n'existe pas. le paramètre \texttt{attendre} vaut 0 si l'utilisateur ne souhaite pas attendre, -1 pour attendre indéfiniment ou tout autre valeur correspondant à la durée d'attente en millisecondes.
 
 \subsection{Donner un jeton}
-Quand l'utilisateur souhaite déposer un jeton dans le sémaphore, il utilise la fonction \texttt{int donner(semid_t semId)}. Les codes retour de la fonction sont les suivants : 1 si le jeton a été rendu, 0 si le sémaphore est plein, -1 si le sémaphore identifié par semId n'existe pas.
+Quand l'utilisateur souhaite déposer un jeton dans le sémaphore, il utilise la fonction \texttt{int donner(semid\_t semId)}. Les codes retour de la fonction sont les suivants : 1 si le jeton a été rendu, 0 si le sémaphore est plein, -1 si le sémaphore identifié par semId n'existe pas.
 
 Ce mécanisme ne vérifie pas si un utilisateur a pris un jeton avec \texttt{prendre()} avant de le donner avec \texttt{donner()}.

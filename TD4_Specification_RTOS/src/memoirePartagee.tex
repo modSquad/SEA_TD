@@ -1,30 +1,29 @@
-\providecommand{kw}[1]{\texttt{#1}}
+\section{Mémoire partagé}
+Un segment de mémoire partagée permet de partagée des informations, dans un
+bloc mémoire, entre plusieurs tâches. Aucun mécanisme d'exclusion mutuelle
+n'est géré par la mémoire partagée, qui doit donc être protégée de
+manière extérieur si besoin est.
 
-\Region{Mémoire partagé}%
-{Un segment de mémoire partagée permet de partagée des informations, dans un
-    bloc mémoire, entre plusieurs tâches. Aucun mécanisme d'exclusion mutuelle
-	n'est géré par la mémoire partagée, qui doit donc être protégée de
-	manière extérieur si besoin est.}
-{La mémoire partagée peut être accédée comme un fichier. Ce fichier peut (et
-	sera dans la plupart des cas) associé en mémoire par un appel de type
-    \kw{mmap}.}
-{Le Task Control Block contient un descripteur de fichier (petit entier
-	positif) associé à la mémoire partagée.}
-{
+La mémoire partagée peut être accédée comme un fichier. Ce fichier peut (et
+sera dans la plupart des cas) associé en mémoire par un appel de type
+\texttt{mmap}.
+
+Le Task Control Block contient un descripteur de fichier (petit entier
+positif) associé à la mémoire partagée.
+
     \begin{description}
-	\item[\kw{int mempart_init(nom, mode)} : ] ouvre un segment de
-	    mémoire partagé représenté dans le système par \kw{nom}, avec le
-	    mode d'ouverture \kw{mode} (création, lecture, écriture, etc.).
-	\item[\kw{int mempart_fermer(fd)} : ] ferme le segment de mémoire
+	\item[\texttt{int mempart\_init(nom, mode)} : ] ouvre un segment de
+	    mémoire partagé représenté dans le système par \texttt{nom}, avec le
+	    mode d'ouverture \texttt{mode} (création, lecture, écriture, etc.).
+	\item[\texttt{int mempart\_fermer(fd)} : ] ferme le segment de mémoire
 	partagée, en vidant les buffers.
 	\item L'attachement du fichier en mémoire ne fait pas strictement
 	partie de l'API de cette tâche.
     \end{description}
-}
-{
-    Diagramme d'état :
-    nonAttache -> attaché
-    attaché -> mappéEnMémoire
-    mappéEnMémoire -> attaché
-    attaché -> detaché
-}
+
+Diagramme d'état :
+nonAttache -> attaché
+attaché -> mappéEnMémoire
+mappéEnMémoire -> attaché
+attaché -> detaché
+
