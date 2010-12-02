@@ -1,13 +1,11 @@
-\section{Evénement}
-
-\subsection{Définition}
-
+\Object{Evénement}
+{
 Un objet de type événement mémorise le signal marquant qu'une condition 
 est devenue vraie. Il permet la signalisation entre deux tâches - cela 
 implique qu'il y a une tâche émettrice et une tâche destinataire. 
-~\\
+}
 
-\subsection{Propriétés}
+{
 \begin{enumerate}
    \item Un événement est spécifique à une tâche, susceptible de l'attendre.
    Une tâche est en attente du signal alors qu'une autre sera chargée de l'envoyer. 
@@ -25,9 +23,8 @@ implique qu'il y a une tâche émettrice et une tâche destinataire.
    \item En combinant l'objet événement à l'agence Horlogerie on pourrait
    gérer des attentes avec délai comme des time-out.
 \end{enumerate}
-~\\
-
-\subsection{Liste des primitives}
+}
+{
 \begin{enumerate}
    \item \textbf{boolean ARRIVE (listeEvenements, operateur)}
 	~\\ - Utile pour la signalisation multiple, cette primitive permet de
@@ -53,9 +50,8 @@ implique qu'il y a une tâche émettrice et une tâche destinataire.
 	plus d'événement, elle passe à l'état \textit{prêt} et l'ordonnanceur est invoqué. 
 	Sinon, l'arrivée de l'évènement est mémorisée et l'état de la tâche ne change pas.
 \end{enumerate}
-~\\
-\newpage
-\subsection{Diagramme d'état}
+}
+{
 Les deux états dans lesquels un événement peut se trouver sont \textit{NON
 ARRIVé} et \textit{ARRIVé}.
 
@@ -63,3 +59,4 @@ ARRIVé} et \textit{ARRIVé}.
 \centering
 \includegraphics[width=\textwidth]{img/EtatsEvenement.png}
 \end{figure}
+}
