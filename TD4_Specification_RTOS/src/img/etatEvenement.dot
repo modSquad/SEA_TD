@@ -1,0 +1,22 @@
+digraph etatEvenement
+{
+	rankdir = LR;
+
+	node [ margin = 0.2,0.2 shape = "rect"]
+	edge [ margin = 0.2,0.2 ]
+
+	arrive [label = "Arrivé"]
+
+	narrive [label = "Non Arrivé"]
+
+	arrive -> narrive [label = "Effacer"]
+	narrive -> arrive [label = "Signaler"]
+
+	arrive -> arrive [label = "\nSignaler"]
+	arrive -> arrive [label = "Attendre"]
+
+	narrive -> narrive [label = "\nEffacer"]
+	narrive -> narrive [label = "Attendre"]
+
+}
+

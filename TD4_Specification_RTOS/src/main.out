@@ -1,0 +1,24 @@
+\BOOKMARK [1][-]{section.1}{S\351maphore a compte}{}
+\BOOKMARK [2][-]{subsection.1.1}{Initialisation du s\351maphore}{section.1}
+\BOOKMARK [2][-]{subsection.1.2}{Destruction du s\351maphore}{section.1}
+\BOOKMARK [2][-]{subsection.1.3}{Prendre un jeton}{section.1}
+\BOOKMARK [2][-]{subsection.1.4}{Donner un jeton}{section.1}
+\BOOKMARK [1][-]{section.2}{Ev\351nement}{}
+\BOOKMARK [2][-]{subsection.2.1}{D\351finition de l'objet}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Attributs de l'objet}{section.2}
+\BOOKMARK [2][-]{subsection.2.3}{Sp\351cification des primitives}{section.2}
+\BOOKMARK [2][-]{subsection.2.4}{Diagramme d'\351tat}{section.2}
+\BOOKMARK [2][-]{subsection.2.5}{Divers}{section.2}
+\BOOKMARK [1][-]{section.3}{M\351moire partag\351}{}
+\BOOKMARK [1][-]{section.4}{R\351gion}{}
+\BOOKMARK [2][-]{subsection.4.1}{D\351finition de l'objet}{section.4}
+\BOOKMARK [2][-]{subsection.4.2}{Attributs de l'objet}{section.4}
+\BOOKMARK [2][-]{subsection.4.3}{Sp\351cification des primitives}{section.4}
+\BOOKMARK [2][-]{subsection.4.4}{Diagramme d'\351tat}{section.4}
+\BOOKMARK [2][-]{subsection.4.5}{Divers}{section.4}
+\BOOKMARK [1][-]{section.5}{T\342che}{}
+\BOOKMARK [2][-]{subsection.5.1}{D\351finition de l'objet}{section.5}
+\BOOKMARK [2][-]{subsection.5.2}{Attributs de l'objet}{section.5}
+\BOOKMARK [2][-]{subsection.5.3}{Sp\351cification des primitives}{section.5}
+\BOOKMARK [2][-]{subsection.5.4}{Diagramme d'\351tat}{section.5}
+\BOOKMARK [2][-]{subsection.5.5}{Divers}{section.5}

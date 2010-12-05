@@ -1,0 +1,18 @@
+digraph etatEvenement
+{
+	rankdir = LR;
+
+	node [ margin = 0.2,0.2 shape = "rect"]
+	edge [ margin = 0.2,0.2 ]
+
+	pre [label = "Actif,\nmode préemptible"]
+
+	npre [label = "Actif,\nmode non préemptible"]
+
+	pre -> npre [label = "Entrer (R1)"]
+	npre -> pre [label = "Sortir (R1)"]
+
+	npre -> npre [label = "\nEntrer (R2)"]
+	npre -> npre [label = "Sortir (R2)"]
+
+}

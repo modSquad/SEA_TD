@@ -1,0 +1,22 @@
+digraph etatEvenement
+{
+	rankdir = LR;
+
+	node [ margin = 0.2,0.2 shape = "rect"]
+	edge [ margin = 0.2,0.2 ]
+
+	libre [label = "Toutes régions libres"]
+	occlib [label = "R1 Occupé\nR2 Libre"]
+	occocc [label = "R1 Occupé,\nR2 Occupé"]
+	Ri [label = "..."]
+
+	libre -> occlib [label = "Entrer (R1)"]
+	occlib -> libre [label = "Sortir (R1)"]
+
+	occlib -> occocc [label = "Entrer (R2)"]
+	occocc -> occlib [label = "Sortir (R2)"]
+
+	occocc -> Ri [label = "Entrer (...)"]
+	Ri -> occocc [label = "Sortir (...)"]
+}
+
