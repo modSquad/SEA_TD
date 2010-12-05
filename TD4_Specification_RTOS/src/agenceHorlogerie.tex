@@ -1,0 +1,75 @@
+Agence horlogerie
+
+définition
+
+L'agence horlogerie fournie un service d'acquisition et de gestion du temps.
+Cette agence permet d'obtenir le temps écoulé depuis le 1 janvier 1979 à minuit à la milliseconde près.
+
+Elle offre également la manipulation simple de chronomètres, la création d'évenement à une date ou après l'écoulement d'un temps.
+
+propriétés
+
+struct duree
+seconde
+mseconde
+
+struct time
+heure
+minute
+seconde
+mseconde
+
+struct date
+jour
+mois
+annee
+
+struct datetime
+date
+time
+
+spécifications des primitives
+
+getCurrentTime
+
+getCurrentDate
+
+Chronometre
+
+	create chrono
+
+	delete chrono
+
+	getTime from chrono
+
+
+Evenement
+
+	create Event (datetime)
+
+	create Event (duree)
+
+Reflexion sur le rapport entre f1 et f2
+
+f1 fréquence des interruptions de l'horloge temps réel.
+f2 fréquence des temps minimum d'execution d'une tache avant préemption
+
+Plus f2 est proche de f1, meilleur est le temps de réponse.
+On permet aux tâches de changer très rapidement entre elle, on couvre un maximum de tâches simultanément.
+En revanche, il faudras plus de temps d'éxecution, étant donné que le passage entre 2 tâche consomme un certain temps processeur.
+
+Plus f2 est éloigné de f1, meilleur est l'efficacité d'execution.
+On économise tout les temps de passage d'une tâche à l'autre, en revanche, on perd en réactivité.
+
+Le temps moyen d'execution d'une tâche.
+Le temps maximum d'execution d'une primitive
+Le temps moyen d'exécution d'une instruction
+
+
+
+Il n'est pas avantageux d'avoir une fréquence f2 trop proche de la fréquence d'execution des instructions.
+
+Le temps moyen d'execution d'une primitive seras 10 à 100 fois plus long que le temps d'éxecution d'une instruction.
+
+Le temps moyen d'execution d'une tâche doit permettre à plusieurs primitive de s'executer, il sera donc environ 100 fois plus long que le temps d'execution d'une primitive.
+
