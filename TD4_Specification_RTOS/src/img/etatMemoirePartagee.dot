@@ -1,0 +1,17 @@
+digraph {
+	rankdir = LR;
+
+	node [ margin = 0.2,0.2 shape = "rect"]
+	edge [ margin = 0.2,0.2 ]
+
+	attache [label = "Attaché"]
+	detache [label = "Détaché"]
+	nattache [label = "Non attaché"]
+	mappe [label = "Mappé en mémoire"]
+
+	nattache -> attache
+	attache -> mappe
+	mappe -> attache
+	attache -> detache
+
+}

@@ -1,0 +1,16 @@
+digraph {
+	rankdir = LR;
+
+	node [ margin = 0.2,0.2 shape = "rect"]
+	edge [ margin = 0.2,0.2 ]
+
+	vide [ label = "Vide" ]
+	njetons [ label = "Contient n jetons" ]
+	plein [ label = "Plein" ]
+	
+	vide -> njetons [label = "Donner jeton"]
+	njetons -> plein [label = "Donner jeton"]
+	plein -> njetons [label = "Prendre jeton"]
+	njetons -> vide [label = "Prendre jeton"]
+
+}

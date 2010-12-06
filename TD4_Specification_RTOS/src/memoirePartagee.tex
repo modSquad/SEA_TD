@@ -1,4 +1,5 @@
-\section{Mémoire partagé}
+\Object{Mémoire partagé}
+{
 Un segment de mémoire partagée permet de partager des informations, dans un
 bloc mémoire, entre plusieurs tâches. Aucun mécanisme d'exclusion mutuelle
 n'est géré par la mémoire partagée, qui doit donc être protégée de
@@ -10,7 +11,9 @@ sera dans la plupart des cas) associé en mémoire par un appel de type
 
 Le Task Control Block contient un descripteur de fichier (petit entier
 positif) associé à la mémoire partagée.
-
+}
+{}
+{
     \begin{description}
 	\item[\texttt{int mempart\_init(nom, mode)} : ] ouvre un segment de
 	    mémoire partagé représenté dans le système par \texttt{nom}, avec le
@@ -20,10 +23,11 @@ positif) associé à la mémoire partagée.
 	\item L'attachement du fichier en mémoire ne fait pas strictement
 	partie de l'API de cette tâche.
     \end{description}
-
-Diagramme d'état :
-nonAttache -> attaché
-attaché -> mappéEnMémoire
-mappéEnMémoire -> attaché
-attaché -> detaché
-
+}
+{
+\begin{figure} [htp]
+\centering
+\includegraphics[width=\textwidth]{img/etatMemoirePartagee.pdf}
+\end{figure}
+}
+{}

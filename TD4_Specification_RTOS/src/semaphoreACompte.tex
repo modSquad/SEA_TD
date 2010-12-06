@@ -44,10 +44,11 @@ utilisateur a pris un jeton avec \texttt{prendre()} avant de le donner avec
 \texttt{donner()}.
 \end{itemize}
 }
-
-Diagramme d'état :
-[vide]    [contient n jetons]     [plein]
-  Vide->contient n (donner jeton)
-  contient n ->plein (donner jeton)
-  plein -> contient n (prendre jeton)
-  contient n -> vide (prendre jeton)
+{
+\begin{figure} [htp]
+\centering
+\includegraphics[width=\textwidth]{img/etatSemaphoreACompte.pdf}
+\end{figure}
+}
+{
+}
