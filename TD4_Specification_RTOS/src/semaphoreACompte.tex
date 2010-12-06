@@ -9,8 +9,8 @@ ressource critique.
 }
 {
 \begin{itemize}
-	\item Capacité (nombre de jetons qu'il peut contenir) \lstinline{int}
-	\item Etat (nombre de jetons qu'il contient à un instant t) \lstinline{int}
+	\item Capacité (nombre de jetons qu'il peut contenir) \lstinline {int}
+	\item Etat (nombre de jetons qu'il contient à un instant t) \lstinline {int}
 \end{itemize}
 
 Le sémaphore est représenté et manipulé par l'utilisateur grâce à un
@@ -19,16 +19,16 @@ identifiant communiqué à l'utilisateur lors de l'initialisation de l'objet
 }
 {
 \begin{itemize}
-	\item \lstinline{semid\_t creerSemaphore(int maxJetons, int initJetons)}
+	\item \lstinline {semid\_t creerSemaphore(int maxJetons, int initJetons)}
 L'initialisation d'un sémaphore permet de créer l'objet. L'utilisateur définit
 le nombre de jetons qu'il peut contenir et le nombre qu'il contient à la
 création de l'objet. \texttt{maxJeton} correspond au maximum de jetons que peux
 accueillir le sémaphore et \texttt{initJetons} le nombre de jeton initial.
-	\item \lstinline{void supprSemaphore(semid\_t semId)} La déstruction d'un
+	\item \lstinline {void supprSemaphore(semid\_t semId)} La déstruction d'un
 sémaphore détruit l'objet et le supprime de la mémoire. Si des utilisateurs
 attendaient la libération d'un jeton, alors ils seront libérés et l'utilisateur
 sera notifié par un code retour particulier (voir ci-dessous).
-	\item \lstinline{int prendre(semid\_t semId, int attendre)} L'utilisateur
+	\item \lstinline {int prendre(semid\_t semId, int attendre)} L'utilisateur
 souhaitant accéder à la ressource partagée doit prendre un jeton dans le
 sémaphore. Il peut spécifier la stratégie d'attente si aucun jeton n'est
 disponible. La fonction retourne 1 si l'utilisateur a obtenu un jeton, 0 si non
@@ -36,7 +36,7 @@ et -1 si le sémaphore identifié par semId n'existe pas. le paramètre
 \texttt{attendre} vaut 0 si l'utilisateur ne souhaite pas attendre, -1 pour
 attendre indéfiniment ou tout autre valeur correspondant à la durée d'attente
 en millisecondes.
-	\item \lstinline{int donner(semid\_t semId)} L'utilisateur souhaite
+	\item \lstinline {int donner(semid\_t semId)} L'utilisateur souhaite
 déposer un jeton dans le sémaphore. Les codes retour de la fonction sont les
 suivants : 1 si le jeton a été rendu, 0 si le sémaphore est plein, -1 si le
 sémaphore identifié par semId n'existe pas. Ce mécanisme ne vérifie pas si un

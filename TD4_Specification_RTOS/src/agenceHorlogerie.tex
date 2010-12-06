@@ -1,75 +1,78 @@
-Agence horlogerie
-
-\Object{Agence horlogerie}
+\Agence{Agence horlogerie}
 {
-L'agence horlogerie fournie un service d'acquisition et de gestion du temps.
-Cette agence permet d'obtenir le temps écoulé depuis le 1 janvier 1979 à minuit à la milliseconde près.
-
-Elle offre également la manipulation simple de chronomètres, la création d'évenement à une date ou après l'écoulement d'un temps.
+L'agence horlogerie fournie un service d'acquisition du temps.
+Elle offre également la création d'évenement à une date ou après l'écoulement d'un temps.
 }
 {
-struct duree
-seconde
-mseconde
+\begin{itemize}
+	\item La structure \lstinline {struct duree\_t} est composée de :
+	\begin{itemize}
+		\item seconde : \lstinline {int}
+		\item mseconde : \lstinline {int} 
+	\end{itemize}
 
-struct time
-heure
-minute
-seconde
-mseconde
+	\item La structure \lstinline {struct time\_t} est composée de :
+	\begin{itemize}
+		\item heure : \lstinline {int}
+		\item minute : \lstinline {int} 
+		\item seconde : \lstinline {int}
+		\item mseconde : \lstinline {int} 
+	\end{itemize}
 
-struct date
-jour
-mois
-annee
+	\item La structure \lstinline {struct date\_t} est composée de :
+	\begin{itemize}
+		\item jour : \lstinline {int}
+		\item mois : \lstinline {int}
+		\item annee : \lstinline {int} 
+	\end{itemize}
 
-struct datetime
-date
-time
+	\item La structure \lstinline {struct datetime\_t} est composée de :
+	\begin{itemize}
+		\item date : \lstinline {struct date\_t}
+		\item time : \lstinline {struct time\_t} 
+	\end{itemize}
+\end{itemize}
 }
 {
-getCurrentTime
+\begin{itemize}
 
-getCurrentDate
+	\item \lstinline {time\_t getCurrentTime()}
+	Cette primitive permet de récupérer le temps courant.
 
-Chronometre
+	\item \lstinline {date\_t getCurrentDate()}
+	Cette primitive permet de récupérer la date courante.
 
-	create chrono
+	\item \lstinline {setCurrentTime(time\_t time)}
+	Cette primitive permet de définir le temps courant.
 
-	delete chrono
+	\item \lstinline {setCurrentDate(date\_t date)}
+	Cette primitive permet de définir la date courante.
 
-	getTime from chrono
+	\item \lstinline {event\_id createEvent (datetime\_t dateTime)}
+	Créer un évenment qui sera déclenché à la date \texttt{dateTime}.
 
-
-Evenement
-
-	create Event (datetime)
-
-	create Event (duree)
+	\item \lstinline {event\_id createEvent (duree\_t duree)}
+	Créer un évenement qui sera déclenché à la date courante + \texttt{duree}.
+\end{itemize}
 }
-{}
 {
 \subsubsection{Reflexion sur le rapport entre f1 et f2}
 
-f1 fréquence des interruptions de l'horloge temps réel.
-f2 fréquence des temps minimum d'execution d'une tache avant préemption
+\begin{itemize}
+\item \emph{f1} : fréquence des interruptions de l'horloge temps réel.
+\item \emph{f2} : fréquence des temps minimum d'execution d'une tache avant préemption
+\end{itemize}
 
-Plus f2 est proche de f1, meilleur est le temps de réponse.
-On permet aux tâches de changer très rapidement entre elle, on couvre un maximum de tâches simultanément.
-En revanche, il faudras plus de temps d'éxecution, étant donné que le passage entre 2 tâche consomme un certain temps processeur.
+La fréquence \emph{f1} est la fréquence d'execution des instruction cadencé par l'horloge temps réel.
+Il n'est pas avantageux d'avoir une fréquence \emph{f2} trop proche de la fréquence d'execution des instructions, car le changement de contexte pourrais être alors plus consommateur en ressources que l'execution des tâches elle-même.
 
-Plus f2 est éloigné de f1, meilleur est l'efficacité d'execution.
-On économise tout les temps de passage d'une tâche à l'autre, en revanche, on perd en réactivité.
+Plus \emph{f2} est proche de \emph{f1}, meilleur est le temps de réponse, car les tâches rendent la main très fréquement.
+Il sera donc rare d'attendre une tâche longtemps.
+En revanche, le temps d'execution sera rallongé du temps de changement de contexte fréquent.
 
-Le temps moyen d'execution d'une tâche.
-Le temps maximum d'execution d'une primitive
-Le temps moyen d'exécution d'une instruction
+Plus \emph{f2} est éloigné de \emph{f1}, meilleur est l'efficacité d'execution.
+On économise tout les temps de passage d'une tâche à l'autre, en revanche, la réactivité est moins bonne.
 
-
-
-Il n'est pas avantageux d'avoir une fréquence f2 trop proche de la fréquence d'execution des instructions.
-
-Le temps moyen d'execution d'une primitive seras 10 à 100 fois plus long que le temps d'éxecution d'une instruction.
-
+Le temps moyen d'execution d'une primitive seras 10 à 100 fois plus long que le temps d'éxecution d'une instruction, car les primitives comportent plusieurs dizaine d'instructions.
 Le temps moyen d'execution d'une tâche doit permettre à plusieurs primitive de s'executer, il sera donc environ 100 fois plus long que le temps d'execution d'une primitive.
 }
